@@ -1,0 +1,28 @@
+{
+  "name": "ufpi-mobile-cm",
+  "version": "1.0.0",
+  "description": "Web app for managing UFPI mobile content",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vekat/ufpi-mobile-cm.git"
+  },
+  "keywords": [
+    "ufpi",
+    "mobile"
+  ],
+  "author": "Vitor Cortez <vitor.a.cortez@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vekat/ufpi-mobile-cm/issues"
+  },
+  "homepage": "https://github.com/vekat/ufpi-mobile-cm#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2"
+  }
+}

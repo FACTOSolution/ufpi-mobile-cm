@@ -1,0 +1,7 @@
+# node build artifacts
+node_modules
+npm-debug.log
+
+# local development
+*.env
+*.dev
