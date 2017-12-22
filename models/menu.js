@@ -5,13 +5,13 @@ const RestaurantSchema = new mongoose.Schema({
   open: { type: Boolean, required: true },
   known: { type: Boolean, required: true },
   meals: mongoose.SchemaTypes.Mixed
-})
+}, { _id: false })
 
 const DaySchema = new mongoose.Schema({
   day: { type: Number, min: 0, max: 6 },
   lunch: [RestaurantSchema],
   dinner: [RestaurantSchema]
-})
+}, { _id: false })
 
 const MenuSchema = new mongoose.Schema({
   monday: DaySchema,
