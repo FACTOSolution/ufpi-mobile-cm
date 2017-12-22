@@ -41,6 +41,10 @@ UserSchema.statics.authorize = function userAuthorizer(email, password, done) {
 UserSchema.pre('save', function hashPassword(done) {
   const user = this
 
+  if (!user.isModified('password')) {
+    return done()
+  }
+
   bcrypt.hash(user.password, 10, (err, hash) => {
     if (err) {
       return done(err)
