@@ -6,6 +6,7 @@ const init = require('./db')
 const User = require('./models/user')
 
 const users = require('./routes/user')
+const menus = require('./routes/menu')
 
 const PORT = process.env.PORT
 const app = express()
@@ -21,6 +22,7 @@ app.use(express.json())
 app.get('/', (_, res) => res.render('index', { options: { hour: '2-digit', minute: '2-digit' } }))
 
 app.use('/api', users)
+app.use('/api', menus)
 
 app.get('/api/login', passport.authenticate('basic', { session: false }), (req, res) => {
   res.status(200).render('login', { userId: req.user._id, userEmail: req.user.email })
