@@ -2,11 +2,44 @@ const express = require('express')
 const passport = require('passport')
 
 const Menu = require('../models/menu')
+const isValidDate = require('../util').isValidDate
+const isValidOid = require('mongoose').Types.ObjectId.isValid
 
 const router = express.Router()
 
-router.get('/menus', (req, res) => {
-  Menu.find({}).select('-__v').exec((err, data) => {
+router.get('/menus/:publisher', (req, res) => {
+  const { publisher } = req.params
+
+  if (!isValidOid(publisher)) {
+    return res.status(400).send('Invalid publisher id')
+  }
+
+  let { startDate, limit, sort } = req.query
+
+  startDate = new Date(startDate)
+  if (!isValidDate(startDate)) {
+    startDate = null
+  }
+
+  if (isNaN(limit)) {
+    limit = 10
+  } else {
+    limit = parseInt(limit)
+  }
+
+  sort = (sort === 'asc' ? 1 : (sort === 'des' ? -1 : null))
+
+  const query = Menu.find({ publisher })
+
+  if (startDate) {
+    query.where('startDate').lte(startDate)
+  }
+
+  if (sort) {
+    query.sort({ startDate: sort })
+  }
+
+  query.limit(limit).exec((err, data) => {
     if (err) {
       return res.status(500).send(err.message)
     }
@@ -15,15 +48,15 @@ router.get('/menus', (req, res) => {
   })
 })
 
-router.get('/menus/latest', (req, res) => {
-  const { userId, startDate } = req.query
+router.get('/menus/:publisher/latest', (req, res) => {
+  const { publisher } = req.params
 
-  if (userId === undefined || startDate === undefined) {
-    return res.status(400).send('Bad request. Missing required `userId` and `startDate` query.')
+  if (!isValidOid(publisher)) {
+    return res.status(400).send('Invalid publisher id')
   }
 
   Menu
-    .findOne({ publisher: userId, startDate: {$lte: new Date(startDate)} })
+    .findOne({ publisher })
     .sort({ startDate: -1 })
     .exec((err, menu) => {
       if (err) {
