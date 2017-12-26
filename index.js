@@ -7,6 +7,7 @@ const User = require('./models/user')
 
 const users = require('./routes/user')
 const menus = require('./routes/menu')
+const calendars = require('./routes/calendar')
 
 const PORT = process.env.PORT
 const app = express()
@@ -23,6 +24,7 @@ app.get('/', (_, res) => res.render('index', { options: { hour: '2-digit', minut
 
 app.use('/api', users)
 app.use('/api', menus)
+app.use('/api', calendars)
 
 app.get('/api/login', passport.authenticate('basic', { session: false }), (req, res) => {
   res.status(200).render('login', { userId: req.user._id, userEmail: req.user.email })
