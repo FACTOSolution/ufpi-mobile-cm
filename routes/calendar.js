@@ -40,6 +40,8 @@ router.get('/calendars/:publisher', (req, res) => {
     query.sort({ createdAt: sort })
   }
 
+  query.select({ _id: 0, '__v': 0, createdAt: 0, updatedAt: 0, publisher: 0 })
+
   query.limit(limit).exec((err, data) => {
     if (err) {
       return res.status(500).send(err.message)
@@ -59,6 +61,7 @@ router.get('/calendars/:publisher/latest', (req, res) => {
   Calendar
     .findOne({ publisher })
     .sort({ year: -1, createdAt: -1 })
+    .select({ _id: 0, '__v': 0, createdAt: 0, updatedAt: 0, publisher: 0 })
     .exec((err, calendar) => {
       if (err) {
         return res.status(500).send(err.message)
@@ -77,7 +80,8 @@ router.post('/calendars', passport.authenticate('basic', { session: false }), (r
       publisher: req.user._id
     })
     .then((calendar) => {
-      res.status(200).json(calendar)
+      const { title, year, events } = calendar
+      res.status(200).json({ title, year, events })
     })
     .catch((err) => {
       res.status(500).send(err.message)

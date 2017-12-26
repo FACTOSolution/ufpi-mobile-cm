@@ -39,6 +39,8 @@ router.get('/menus/:publisher', (req, res) => {
     query.sort({ startDate: sort })
   }
 
+  query.select({ createdAt: 0, updatedAt: 0, _id: 0, publisher: 0, '__v': 0 })
+
   query.limit(limit).exec((err, data) => {
     if (err) {
       return res.status(500).send(err.message)
@@ -58,6 +60,7 @@ router.get('/menus/:publisher/latest', (req, res) => {
   Menu
     .findOne({ publisher })
     .sort({ startDate: -1 })
+    .select({ createdAt: 0, updatedAt: 0, _id: 0, publisher: 0, '__v': 0 })
     .exec((err, menu) => {
       if (err) {
         return res.status(500).send(err.message)
@@ -76,7 +79,8 @@ router.post('/menus', passport.authenticate('basic', { session: false }), (req, 
       publisher: req.user._id
     })
     .then((menu) => {
-      res.status(200).json(menu)
+      const { monday, tuesday, wednesday, thursday, friday, saturday, startDate, endDate } = menu
+      res.status(200).json({ monday, tuesday, wednesday, thursday, friday, saturday, startDate, endDate })
     })
     .catch((err) => {
       res.status(500).send(err.message)
