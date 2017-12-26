@@ -14,19 +14,19 @@ const DaySchema = new mongoose.Schema({
 }, { _id: false })
 
 const MenuSchema = new mongoose.Schema({
-  monday: DaySchema,
-  tuesday: DaySchema,
-  wednesday: DaySchema,
-  thursday: DaySchema,
-  friday: DaySchema,
-  saturday: DaySchema,
+  monday: { type: DaySchema, required: true },
+  tuesday: { type: DaySchema, required: true },
+  wednesday: { type: DaySchema, required: true },
+  thursday: { type: DaySchema, required: true },
+  friday: { type: DaySchema, required: true },
+  saturday: { type: DaySchema, required: true },
   publisher: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'User',
     required: true
   },
-  startDate: Date,
-  endDate: Date
+  startDate: { type: Date, required: true },
+  endDate: { type: Date, required: true }
 })
 
 const Menu = mongoose.model('Menu', MenuSchema)
