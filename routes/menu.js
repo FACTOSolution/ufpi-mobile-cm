@@ -69,17 +69,18 @@ router.get('/menus/:publisher/latest', (req, res) => {
 
 router.post('/menus', passport.authenticate('basic', { session: false }), (req, res) => {
   const { monday, tuesday, wednesday, thursday, friday, saturday, startDate, endDate } = req.body
-  
-  Menu.create({
-    monday, tuesday, wednesday, thursday, friday, saturday, startDate, endDate,
-    publisher: req.user._id
-  })
-  .then((menu) => {
-    res.status(200).json(menu)
-  })
-  .catch((err) => {
-    res.status(500).send(err.message)
-  })
+
+  Menu
+    .create({
+      monday, tuesday, wednesday, thursday, friday, saturday, startDate, endDate,
+      publisher: req.user._id
+    })
+    .then((menu) => {
+      res.status(200).json(menu)
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
 })
 
 module.exports = router
