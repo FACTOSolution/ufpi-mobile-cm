@@ -27,7 +27,7 @@ const MenuSchema = new mongoose.Schema({
   },
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true }
-})
+}, { timestamps: true })
 
 const Menu = mongoose.model('Menu', MenuSchema)
 

@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-})
+}, { timestamps: true })
 
 UserSchema.statics.authorize = function userAuthorizer(email, password, done) {
   User.findOne({ email })
