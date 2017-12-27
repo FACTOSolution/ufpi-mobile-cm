@@ -4,8 +4,7 @@
   "description": "Web app for managing UFPI mobile content",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nf start"
   },
   "repository": {
     "type": "git",
@@ -22,17 +21,18 @@
   },
   "homepage": "https://github.com/vekat/ufpi-mobile-cm#readme",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "ejs": "^2.5.7",
-    "express": "^4.16.2",
-    "mongodb": "^3.0.0-rc0",
-    "mongoose": "^4.13.7",
-    "passport": "^0.4.0",
-    "passport-http": "^0.3.0",
-    "validator": "^9.2.0",
-    "x-ray": "^2.3.2"
+    "bcryptjs": "2.4.3",
+    "ejs": "2.5.7",
+    "express": "4.16.2",
+    "foreman": "2.0.0",
+    "mongodb": "3.0.0-rc0",
+    "mongoose": "4.13.7",
+    "passport": "0.4.0",
+    "passport-http": "0.3.0",
+    "validator": "9.2.0",
+    "x-ray": "2.3.2"
   },
   "devDependencies": {
-    "dotenv": "^4.0.0"
+    "dotenv": "4.0.0"
   }
 }
