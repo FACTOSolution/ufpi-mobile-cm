@@ -34,7 +34,9 @@ app.get('/api/login', passport.authenticate('basic', { session: false }), (req, 
 })
 
 init(() => {
-  app.listen(PORT, () => {
-    console.log(`listening on ${PORT}`)
+  const server = app.listen(PORT, () => {
+    const props = server.address()
+
+    console.debug(`[${process.env.NODE_ENV}] listening to ${props.address} on port ${props.port}`)
   })
 })
