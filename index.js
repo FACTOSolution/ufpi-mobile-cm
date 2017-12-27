@@ -8,8 +8,10 @@ const User = require('./models/user')
 const users = require('./routes/user')
 const menus = require('./routes/menu')
 const calendars = require('./routes/calendar')
+const articles = require('./routes/article')
 
 const PORT = process.env.PORT
+
 const app = express()
 
 passport.use(new Strategy(User.authorize))
@@ -25,11 +27,14 @@ app.get('/', (_, res) => res.render('index', { options: { hour: '2-digit', minut
 app.use('/api', users)
 app.use('/api', menus)
 app.use('/api', calendars)
+app.use('/api', articles)
 
 app.get('/api/login', passport.authenticate('basic', { session: false }), (req, res) => {
   res.status(200).render('login', { userId: req.user._id, userEmail: req.user.email })
 })
 
 init(() => {
-  app.listen(PORT, () => console.log(`listening on ${PORT}`))
+  app.listen(PORT, () => {
+    console.log(`listening on ${PORT}`)
+  })
 })
