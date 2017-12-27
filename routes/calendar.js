@@ -1,8 +1,8 @@
 const express = require('express')
 const passport = require('passport')
+const { isInt, toInt } = require('validator')
 
 const Calendar = require('../models/calendar')
-const isValidDate = require('../util').isValidDate
 const isValidOid = require('mongoose').Types.ObjectId.isValid
 
 const router = express.Router()
@@ -14,41 +14,41 @@ router.get('/calendars/:publisher', (req, res) => {
     return res.status(400).send('Invalid publisher id')
   }
 
-  let { year, limit, sort } = req.query
+  let { year = null, limit = '1', sort = '0' } = req.query
 
-  const startDate = new Date()
-  startDate.setFullYear(year)
-  if (!isValidDate(startDate)) {
-    year = null
+  if (year !== null && !isInt(year, { gt: 999, lt: 10000 })) {
+    return res.status(400).send('Invalid `year`')
   }
 
-  if (isNaN(limit)) {
-    limit = 10
-  } else {
-    limit = parseInt(limit)
+  if (!isInt(limit, { min: 1, max: 4 })) {
+    return res.status(400).send('Invalid `limit`')
   }
 
-  sort = (sort === 'asc' ? 1 : (sort === 'des' ? -1 : null))
+  limit = toInt(limit)
+
+  if (!isInt(sort)) {
+    return res.status(400).send('Invalid `sort`')
+  }
+
+  sort = toInt(sort) < 0 ? -1 : 1
 
   const query = Calendar.find({ publisher })
 
-  if (year) {
+  if (year !== null) {
     query.where('year').lte(year)
   }
 
-  if (sort) {
-    query.sort({ createdAt: sort })
-  }
+  query
+    .sort({ createdAt: sort, year: sort })
+    .select({ _id: 0, '__v': 0, createdAt: 0, updatedAt: 0, publisher: 0 })
+    .limit(limit)
+    .exec((err, data) => {
+      if (err) {
+        return res.status(500).send(err.message)
+      }
 
-  query.select({ _id: 0, '__v': 0, createdAt: 0, updatedAt: 0, publisher: 0 })
-
-  query.limit(limit).exec((err, data) => {
-    if (err) {
-      return res.status(500).send(err.message)
-    }
-
-    res.status(200).json(data)
-  })
+      res.status(200).json(data)
+    })
 })
 
 router.get('/calendars/:publisher/latest', (req, res) => {
