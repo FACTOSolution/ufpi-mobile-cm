@@ -39,4 +39,19 @@ init(() => {
 
     console.debug(`[${process.env.NODE_ENV}] listening to ${props.address} on port ${props.port}`)
   })
+
+  const closeServer = function() {
+    server.close(() => {
+      console.log('connections closed')
+      process.exit(0)
+    })
+
+    setTimeout(() => {
+      console.log('shutting down')
+      process.exit(1)
+    }, 10000)
+  }
+
+  process.on('SIGTERM', closeServer)
+  process.on('SIGINT', closeServer)
 })
