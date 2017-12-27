@@ -28,6 +28,11 @@
     "mongodb": "^3.0.0-rc0",
     "mongoose": "^4.13.7",
     "passport": "^0.4.0",
-    "passport-http": "^0.3.0"
+    "passport-http": "^0.3.0",
+    "validator": "^9.2.0",
+    "x-ray": "^2.3.2"
+  },
+  "devDependencies": {
+    "dotenv": "^4.0.0"
   }
 }
