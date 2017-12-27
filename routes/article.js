@@ -11,11 +11,11 @@ router.get('/articles/update', (req, res) => {
   let { pages = '1', start = '0' } = req.query
 
   if (!isInt(pages)) {
-    res.status(400).send('Param `pages` must be an integer')
+    return res.status(400).send('Param `pages` must be an integer')
   }
 
   if (!isInt(start)) {
-    res.status(400).send('Param `start` must be an integer')
+    return res.status(400).send('Param `start` must be an integer')
   }
 
   pages = toInt(pages)
@@ -42,15 +42,15 @@ router.get('/articles', (req, res) => {
   let { limit = '10', skip = '0', sort = '0' } = req.query
 
   if (!isInt(limit)) {
-    res.status(400).send('Param `limit` must be an integer')
+    return res.status(400).send('Param `limit` must be an integer')
   }
 
   if (!isInt(skip)) {
-    res.status(400).send('Param `skip` must be an integer')
+    return res.status(400).send('Param `skip` must be an integer')
   }
 
   if (!isInt(sort)) {
-    res.status(400).send('Param `sort` must be an integer')
+    return res.status(400).send('Param `sort` must be an integer')
   }
 
   limit = toInt(limit)
