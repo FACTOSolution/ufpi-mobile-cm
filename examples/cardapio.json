@@ -1,0 +1,436 @@
+{
+  "monday": {
+    "day": 0,
+    "dinner": [
+      {
+        "name": "RU1",
+        "open": false,
+        "known": true
+      },
+      {
+        "name": "RU2",
+        "open": true,
+        "known": false
+      },
+      {
+        "name": "RU3",
+        "open": true,
+        "known": true,
+        "meals": {
+          "regular": {
+            "salada": [
+              "Acelga",
+              "Cenoura",
+              "Salsa"
+            ],
+            "principal": "Frango Assado",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Laranja"
+          },
+          "vegetariano": {
+            "salada": "Salada Crua",
+            "principal": "PVT",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Arroz",
+            "sobremesa": "Laranja"
+          }
+        }
+      }
+    ],
+    "lunch": [
+      {
+        "name": "RU1",
+        "open": true,
+        "known": true,
+        "meals": {
+          "regular": {
+            "salada": [
+              "Pepino",
+              "Tomate",
+              "Cenoura"
+            ],
+            "principal": "Assado",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Melancia",
+            "suco": "Suco de Fruta (Trazer Copo)"
+          },
+          "vegetariano": {
+            "salada": "Salada Crua",
+            "principal": "Purê de batata c/ PVT",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Melancia"
+          }
+        }
+      },
+      {
+        "name": "RU2",
+        "open": false,
+        "known": true
+      },
+      {
+        "name": "RU3",
+        "open": true,
+        "known": false
+      }
+    ]
+  },
+  "tuesday": {
+    "day": 1,
+    "dinner": [
+      {
+        "name": "RU1",
+        "open": false,
+        "known": true
+      },
+      {
+        "name": "RU2",
+        "open": true,
+        "known": false
+      },
+      {
+        "name": "RU3",
+        "open": true,
+        "known": true,
+        "meals": {
+          "regular": {
+            "salada": [
+              "Acelga",
+              "Cenoura",
+              "Salsa"
+            ],
+            "principal": "Frango Assado",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Laranja"
+          },
+          "vegetariano": {
+            "salada": "Salada Crua",
+            "principal": "PVT",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Arroz",
+            "sobremesa": "Laranja"
+          }
+        }
+      }
+    ],
+    "lunch": [
+      {
+        "name": "RU1",
+        "open": true,
+        "known": true,
+        "meals": {
+          "regular": {
+            "salada": [
+              "Pepino",
+              "Tomate",
+              "Cenoura"
+            ],
+            "principal": "Assado",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Melancia",
+            "suco": "Suco de Fruta (Trazer Copo)"
+          },
+          "vegetariano": {
+            "salada": "Salada Crua",
+            "principal": "Purê de batata c/ PVT",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Melancia"
+          }
+        }
+      },
+      {
+        "name": "RU2",
+        "open": false,
+        "known": true
+      },
+      {
+        "name": "RU3",
+        "open": true,
+        "known": false
+      }
+    ]
+  },
+  "wednesday": {
+    "day": 2,
+    "dinner": [
+      {
+        "name": "RU1",
+        "open": false,
+        "known": true
+      },
+      {
+        "name": "RU2",
+        "open": true,
+        "known": false
+      },
+      {
+        "name": "RU3",
+        "open": true,
+        "known": true,
+        "meals": {
+          "regular": {
+            "salada": [
+              "Acelga",
+              "Cenoura",
+              "Salsa"
+            ],
+            "principal": "Frango Assado",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Laranja"
+          },
+          "vegetariano": {
+            "salada": "Salada Crua",
+            "principal": "PVT",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Arroz",
+            "sobremesa": "Laranja"
+          }
+        }
+      }
+    ],
+    "lunch": [
+      {
+        "name": "RU1",
+        "open": true,
+        "known": true,
+        "meals": {
+          "regular": {
+            "salada": [
+              "Pepino",
+              "Tomate",
+              "Cenoura"
+            ],
+            "principal": "Assado",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Melancia",
+            "suco": "Suco de Fruta (Trazer Copo)"
+          },
+          "vegetariano": {
+            "salada": "Salada Crua",
+            "principal": "Purê de batata c/ PVT",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Melancia"
+          }
+        }
+      },
+      {
+        "name": "RU2",
+        "open": false,
+        "known": true
+      },
+      {
+        "name": "RU3",
+        "open": true,
+        "known": false
+      }
+    ]
+  },
+  "thursday": {
+    "day": 3,
+    "dinner": [
+      {
+        "name": "RU1",
+        "open": false,
+        "known": true
+      },
+      {
+        "name": "RU2",
+        "open": true,
+        "known": false
+      },
+      {
+        "name": "RU3",
+        "open": true,
+        "known": true,
+        "meals": {
+          "regular": {
+            "salada": [
+              "Acelga",
+              "Cenoura",
+              "Salsa"
+            ],
+            "principal": "Frango Assado",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Laranja"
+          },
+          "vegetariano": {
+            "salada": "Salada Crua",
+            "principal": "PVT",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Arroz",
+            "sobremesa": "Laranja"
+          }
+        }
+      }
+    ],
+    "lunch": [
+      {
+        "name": "RU1",
+        "open": true,
+        "known": true,
+        "meals": {
+          "regular": {
+            "salada": [
+              "Pepino",
+              "Tomate",
+              "Cenoura"
+            ],
+            "principal": "Assado",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Melancia",
+            "suco": "Suco de Fruta (Trazer Copo)"
+          },
+          "vegetariano": {
+            "salada": "Salada Crua",
+            "principal": "Purê de batata c/ PVT",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Melancia"
+          }
+        }
+      },
+      {
+        "name": "RU2",
+        "open": false,
+        "known": true
+      },
+      {
+        "name": "RU3",
+        "open": true,
+        "known": false
+      }
+    ]
+  },
+  "friday": {
+    "day": 4,
+    "dinner": [
+      {
+        "name": "RU1",
+        "open": false,
+        "known": true
+      },
+      {
+        "name": "RU2",
+        "open": true,
+        "known": false
+      },
+      {
+        "name": "RU3",
+        "open": true,
+        "known": true,
+        "meals": {
+          "regular": {
+            "salada": [
+              "Acelga",
+              "Cenoura",
+              "Salsa"
+            ],
+            "principal": "Frango Assado",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Laranja"
+          },
+          "vegetariano": {
+            "salada": "Salada Crua",
+            "principal": "PVT",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Arroz",
+            "sobremesa": "Laranja"
+          }
+        }
+      }
+    ],
+    "lunch": [
+      {
+        "name": "RU1",
+        "open": true,
+        "known": true,
+        "meals": {
+          "regular": {
+            "salada": [
+              "Pepino",
+              "Tomate",
+              "Cenoura"
+            ],
+            "principal": "Assado",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Melancia",
+            "suco": "Suco de Fruta (Trazer Copo)"
+          },
+          "vegetariano": {
+            "salada": "Salada Crua",
+            "principal": "Purê de batata c/ PVT",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Melancia"
+          }
+        }
+      },
+      {
+        "name": "RU2",
+        "open": false,
+        "known": true
+      },
+      {
+        "name": "RU3",
+        "open": true,
+        "known": false
+      }
+    ]
+  },
+  "saturday": {
+    "day": 5,
+    "dinner": [],
+    "lunch": [
+      {
+        "name": "RU1",
+        "open": true,
+        "known": true,
+        "meals": {
+          "regular": {
+            "salada": [
+              "Pepino",
+              "Tomate",
+              "Cenoura"
+            ],
+            "principal": "Assado",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Melancia",
+            "suco": "Suco de Fruta (Trazer Copo)"
+          },
+          "vegetariano": {
+            "salada": "Salada Crua",
+            "principal": "Purê de batata c/ PVT",
+            "guarnicao": "Farofa",
+            "acompanhamento": "Baião de Dois",
+            "sobremesa": "Melancia"
+          }
+        }
+      },
+      {
+        "name": "RU2",
+        "open": false,
+        "known": true
+      },
+      {
+        "name": "RU3",
+        "open": true,
+        "known": false
+      }
+    ]
+  },
+  "startDate": "2017-12-28T03:00:00.000Z",
+  "endDate": "2017-12-31T03:00:00.000Z"
+}
