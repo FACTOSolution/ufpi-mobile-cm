@@ -21,18 +21,33 @@ router.get('/articles/update', (req, res) => {
   pages = toInt(pages)
   start = toInt(start)
 
+  if (queue.paused === true) {
+    res
+      .status(200)
+      .json({
+        ok: true,
+        message: 'Update request added to queue'
+      })
+  }
+
   queue.enqueue(function updateArticles() {
     fetchPages(pages, start, (err, data) => {
       if (err) {
-        return res.status(500).send(err.message)
+        if (!res.headersSent) {
+          return res.status(500).send(err.message)
+        }
       }
 
       Article.insertFromScraper(data, (err, docs) => {
         if (err) {
-          return res.status(500).send(err.message)
+          if (!res.headersSent) {
+            return res.status(500).send(err.message)
+          }
         }
 
-        res.status(200).json({ ok: true, added: docs.length })
+        if (!res.headersSent) {
+          res.status(200).json({ ok: true, added: docs.length })
+        }
       })
     })
   })
