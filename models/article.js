@@ -9,12 +9,33 @@ const ArticleSchema = new mongoose.Schema({
   text: [String],
 }, { timestamps: true })
 
-ArticleSchema.statics.insertFromScraper = function(json, done) {
-  json.forEach((doc) => {
-    doc.text = doc.text.filter(p => p.length > 0)
+ArticleSchema.statics.insertFromScraper = function (result, done) {
+  result.forEach((v) => {
+    v.code = Number(v.link.match(/\d+/)[0])
+    v.text = v.text.filter(p => p.length > 0)
+
+    const time = v.time.split('h')
+    const date = v.date.split('/')
+    const dateTime = new Date('2000-01-01T00:00:00-03:00')
+
+    dateTime.setFullYear(2000 + Number(date[2]), Number(date[1]) - 1, Number(date[0]))
+    dateTime.setHours(Number(time[0]))
+    dateTime.setMinutes(Number(time[1]))
+
+    v.createdAt = dateTime
+
+    v['titulo'] = v.title
+    v['href'] = v.link
+    v['_data'] = v.date
+    v['hora'] = v.time
+
+    delete v.title
+    delete v.link
+    delete v.date
+    delete v.time
   })
 
-  const newCodes = json.map(doc => doc.code)
+  const newCodes = result.map(v => v.code)
 
   this
     .find({})
@@ -22,33 +43,10 @@ ArticleSchema.statics.insertFromScraper = function(json, done) {
     .in(newCodes)
     .select('code')
     .then((articles) => {
-      const prevCodes = articles.map(a => a.code)
+      const currCodes = articles.map(v => v.code)
 
-      const newDocs = json
-        .filter(d => !prevCodes.includes(d.code))
-        .map(v => {
-          v['titulo'] = v.title
-          v['href'] = v.link
-          v['_data'] = v.date
-          v['hora'] = v.time
-
-          let t = v.time.split('h')
-          let d = v.date.split('/')
-
-          let b = new Date('2000-01-01T00:00:00-03:00')
-          b.setFullYear(2000 + Number(d[2]), Number(d[1]) - 1, Number(d[0]))
-          b.setHours(Number(t[0]))
-          b.setMinutes(Number(t[1]))
-
-          v.createdAt = b
-
-          delete v.title
-          delete v.link
-          delete v.date
-          delete v.time
-
-          return v
-        })
+      const newDocs = result
+        .filter(v => !currCodes.includes(v.code))
 
       this.insertMany(newDocs, (err, added) => {
         if (err) {

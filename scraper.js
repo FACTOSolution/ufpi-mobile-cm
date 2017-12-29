@@ -12,13 +12,11 @@ const baseParams = new URLSearchParams({
 const x = XRay({
   filters: {
     trim: (v) => typeof v === 'string' ? v.trim() : v,
-    getCode: (v) => typeof v === 'string' ? v.match(/\d+/)[0] : v,
-    toNumber: (v) => typeof v === 'string' ? Number(v) : v,
     append: (v, s) => typeof v === 'string' ? v.concat(s) : v
   }
 })
 
-function fetchPages(numberOfPages = 1, startPage = 0, done) {
+function fetchPages(numberOfPages = 1, startPage = 0, done = (_) => void (0)) {
   const params = new URLSearchParams(baseParams)
 
   if (typeof startPage === 'number' && startPage > 0) {
@@ -29,12 +27,11 @@ function fetchPages(numberOfPages = 1, startPage = 0, done) {
   url.search = params
 
   x(url.toString(), '.tileItem', [{
-    code: '.tileHeadline a@href | getCode | toNumber',
     title: '.tileHeadline a | trim',
     link: '.tileHeadline a@href',
     date: '.tileInfo li:nth-child(3) | trim',
     time: '.tileInfo li:nth-child(4) | trim',
-    text: x(`.tileHeadline a@href | append:?${params}`, [
+    text: x(`.tileHeadline a@href | append:?${baseParams}`, [
       '.item-page p | trim'
     ])
   }])
