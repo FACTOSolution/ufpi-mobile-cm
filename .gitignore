@@ -6,5 +6,5 @@ npm-debug.log
 *.env
 *.dev
 
-.vs/
+.vs*/
 data/
