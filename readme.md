@@ -64,6 +64,6 @@ Um modelo do JSON que representa uma notícia pode ser visualizado em [noticia.j
 
 | URL | Método | Autenticação | Descrição |
 | :- | :-: | :-: | - |
-| `/api/articles` | `GET` | Não | Retorna uma coleção de notícias obtidas no website da UFPI
-| `/api/articles/{code}` | `GET` | Não | Retorna todos as informações associadas com a notícia de código `code`
+| `/api/articles` | `GET` | Não | Retorna uma lista de notícias obtidas no website da UFPI. Os resultados dessa rota não apresentam as propriedades `text`, `links` e `images`
+| `/api/articles/{code}` | `GET` | Não | Retorna todos as informações de uma notícia específica identificada pelo valor numérico `code`
 | `/api/articles/update` | `GET` | Não | Requisita que novas notícias sejam adicionadas ao servidor
