@@ -64,8 +64,8 @@ router.get('/articles', (req, res) => {
     return res.status(400).send('Param `skip` must be an integer')
   }
 
-  if (!isInt(sort)) {
-    return res.status(400).send('Param `sort` must be an integer')
+  if (!isInt(sort, { min: -1, max: 1 })) {
+    return res.status(400).send('Param `sort` must be an integer [-1, 1]')
   }
 
   limit = toInt(limit)
@@ -75,16 +75,15 @@ router.get('/articles', (req, res) => {
   const today = new Date(Date.now())
   const dateFloor = (new Date()).setDate(today.getDate() - 25)
 
-  const query = Article
-    .find({ createdAt: { $gte: dateFloor } })
-    .limit(limit)
-    .skip(skip)
+  const query = Article.find({ createdAt: { $gte: dateFloor } })
 
-  if (sort < 0) {
-    query.sort({ code: -1, createdAt: -1 })
+  if (sort !== 0) {
+    query.sort({ createdAt: sort })
   }
 
   query
+    .skip(skip)
+    .limit(limit)
     .select({ _id: 0, text: 0, __v: 0, updatedAt: 0 })
     .exec((err, data) => {
       if (err) {
@@ -99,7 +98,7 @@ router.get('/articles/:code', (req, res) => {
   let { code } = req.params
 
   if (!code || !isInt(code)) {
-    return res.status(400).send('URL param must be an integer')
+    return res.status(400).send('URL `code` param must be an integer')
   }
 
   code = toInt(code)
