@@ -31,9 +31,11 @@ function fetchPages(numberOfPages = 1, startPage = 0, done = (_) => void (0)) {
     link: '.tileHeadline a@href',
     date: '.tileInfo li:nth-child(3) | trim',
     time: '.tileInfo li:nth-child(4) | trim',
-    text: x(`.tileHeadline a@href | append:?${baseParams}`, [
-      '.item-page p | trim'
-    ])
+    data: x(`.tileHeadline a@href | append:?${baseParams}`, {
+      text: ['.item-page p | trim'],
+      images: ['.item-page a ~ p img@src'],
+      links: ['.item-page a ~ p a@href']
+    })
   }])
     .paginate('.pagination-next a@href')
     .limit(numberOfPages)(done)

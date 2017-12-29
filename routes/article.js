@@ -84,7 +84,7 @@ router.get('/articles', (req, res) => {
   query
     .skip(skip)
     .limit(limit)
-    .select({ _id: 0, text: 0, __v: 0, updatedAt: 0 })
+    .select({ _id: 0, __v: 0, updatedAt: 0, text: 0, links: 0, images: 0 })
     .exec((err, data) => {
       if (err) {
         return res.status(500).send(err.message)

@@ -7,12 +7,16 @@ const ArticleSchema = new mongoose.Schema({
   _data: String,
   hora: String,
   text: [String],
+  images: [String],
+  links: [String]
 }, { timestamps: true })
 
 ArticleSchema.statics.insertFromScraper = function (result, done) {
   result.forEach((v) => {
     v.code = Number(v.link.match(/\d+/)[0])
-    v.text = v.text.filter(p => p.length > 0)
+    v.text = v.data.text.filter(p => p.length > 0)
+    v.links = v.data.links.filter(p => p.length > 0)
+    v.images = v.data.images.filter(p => p.length > 0)
 
     const time = v.time.split('h')
     const date = v.date.split('/')
@@ -33,15 +37,14 @@ ArticleSchema.statics.insertFromScraper = function (result, done) {
     delete v.link
     delete v.date
     delete v.time
+    delete v.data
   })
 
   const newCodes = result.map(v => v.code)
 
-  this
-    .find({})
-    .where('code')
-    .in(newCodes)
-    .select('code')
+  this.find({
+    code: { $in: newCodes }
+  }).select('code')
     .then((articles) => {
       const currCodes = articles.map(v => v.code)
 
