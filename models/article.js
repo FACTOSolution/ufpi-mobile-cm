@@ -1,5 +1,44 @@
 const mongoose = require('mongoose')
 
+/**
+ * @swagger
+ * definitions:
+ *  Article:
+ *    type: object
+ *    properties:
+ *      code:
+ *        type: integer
+ *      titulo:
+ *        type: string
+ *      href:
+ *        type: string
+ *        format: uri
+ *      _data:
+ *        type: string
+ *      hora:
+ *        type: string
+ *      text:
+ *        type: array
+ *        items:
+ *          type: string
+ *      images:
+ *        type: array
+ *        items:
+ *          type: string
+ *          format: uri
+ *      links:
+ *        type: array
+ *        items:
+ *          type: string
+ *          format: uri
+ *      createdAt:
+ *        type: string
+ *        format: date-time
+ *      required:
+ *        - code
+ *        - titulo
+ *        - href
+ */
 const ArticleSchema = new mongoose.Schema({
   code: { type: Number, unique: true },
   titulo: { type: String, required: true },
