@@ -7,6 +7,69 @@ const isValidOid = require('mongoose').Types.ObjectId.isValid
 
 const router = express.Router()
 
+/**
+ * @swagger
+ * /calendars:
+ *  post:
+ *    summary: 'Adiciona um novo calendário do usuário autenticado'
+ *    security:
+ *      - basicAuth: []
+ *    tags:
+ *      - 'calendários'
+ *    parameters:
+ *      -
+ *        name: 'calendário'
+ *        in: body
+ *        description: 'O novo calendário que será adicionado'
+ *        required: true
+ *        schema:
+ *          $ref: '#/definitions/Calendar'
+ *    responses:
+ *      200:
+ *        description: 'O calendário adicionado'
+ *        schema:
+ *          $ref: '#/definitions/Calendar'
+ */
+router.post('/calendars', passport.authenticate('basic', { session: false }), (req, res) => {
+  const { title, year, events } = req.body
+
+  Calendar
+    .create({
+      title, year, events,
+      publisher: req.user._id
+    })
+    .then((calendar) => {
+      const { title, year, events } = calendar
+      res.status(200).json({ title, year, events })
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
+/**
+ * @swagger
+ * /calendars/{id}:
+ *  get:
+ *    summary: 'Recupera uma lista de calendários de um usuário'
+ *    tags:
+ *      - 'calendários'
+ *    parameters:
+ *      -
+ *        name: 'id'
+ *        in: path
+ *        description: 'Identificador do usuário associado ao calendário'
+ *        required: true
+ *        schema:
+ *          $ref: '#/definitions/User/properties/id'
+ *    responses:
+ *      200:
+ *        description: 'Uma lista de calendários'
+ *        schema:
+ *          type: array
+ *          items:
+ *            $ref: '#/definitions/Calendar'
+ */
 router.get('/calendars/:publisher', (req, res) => {
   const { publisher } = req.params
 
@@ -51,6 +114,27 @@ router.get('/calendars/:publisher', (req, res) => {
     })
 })
 
+/**
+ * @swagger
+ * /calendars/{id}/latest:
+ *  get:
+ *    summary: 'Recupera o calendário mais recente de um usuário'
+ *    tags:
+ *      - 'calendários'
+ *    parameters:
+ *      -
+ *        name: 'id'
+ *        in: path
+ *        description: 'Identificador do usuário associado ao calendário'
+ *        required: true
+ *        schema:
+ *          $ref: '#/definitions/User/properties/id'
+ *    responses:
+ *      200:
+ *        description: 'Um calendário recente'
+ *        schema:
+ *          $ref: '#/definitions/Calendar'
+ */
 router.get('/calendars/:publisher/latest', (req, res) => {
   const { publisher } = req.params
 
@@ -68,23 +152,6 @@ router.get('/calendars/:publisher/latest', (req, res) => {
       }
 
       res.status(200).json(calendar)
-    })
-})
-
-router.post('/calendars', passport.authenticate('basic', { session: false }), (req, res) => {
-  const { title, year, events } = req.body
-
-  Calendar
-    .create({
-      title, year, events,
-      publisher: req.user._id
-    })
-    .then((calendar) => {
-      const { title, year, events } = calendar
-      res.status(200).json({ title, year, events })
-    })
-    .catch((err) => {
-      res.status(500).send(err.message)
     })
 })
 
