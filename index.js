@@ -22,8 +22,9 @@ app.set('view engine', 'ejs')
 app.use(passport.initialize())
 
 if (process.env.NODE_ENV == 'development') {
-  app.use(logger('dev'))
+  app.use(logger('short'))
 }
+
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
