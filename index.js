@@ -1,7 +1,9 @@
 const express = require('express')
 const logger = require('morgan')
+const apiDocs = require('swagger-jsdoc')
+const apiUI = require('swagger-ui-express')
 const passport = require('passport')
-const Strategy = require('passport-http').BasicStrategy
+const { BasicStrategy } = require('passport-http')
 
 const init = require('./db')
 const User = require('./models/user')
@@ -15,7 +17,26 @@ const PORT = process.env.PORT
 
 const app = express()
 
-passport.use(new Strategy(User.authorize))
+const apiSpec = apiDocs({
+  swaggerDefinition: {
+    swagger: '2.0',
+    info: {
+      title: 'UFPI mobile support API',
+      version: '1.0.0',
+      description: 'A API web de suporte do UFPI Mobile permite a busca de informações sobre o **cardápio** do restaurante universitário, os eventos do **calendário** acadêmico e as últimas **notícias** no website da UFPI.'
+    },
+    consumes: ['application/x-www-form-urlencoded', 'application/json'],
+    securityDefinitions: {
+      basicAuth: {
+        type: 'basic'
+      }
+    },
+    basePath: '/api'
+  },
+  apis: ['./routes/*.js', './models/*.js']
+})
+
+passport.use(new BasicStrategy(User.authorize))
 
 app.set('view engine', 'ejs')
 
@@ -29,6 +50,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 app.get('/', (_, res) => res.render('index', { options: { hour: '2-digit', minute: '2-digit' } }))
+app.get('/spec.json', (_, res) => res.json(apiSpec))
+app.use('/docs', apiUI.serve, apiUI.setup(apiSpec))
 
 app.use('/api', users)
 app.use('/api', menus)
@@ -46,7 +69,7 @@ init(() => {
     console.debug(`[${process.env.NODE_ENV}] listening to ${props.address} on port ${props.port}`)
   })
 
-  const closeServer = function() {
+  const closeServer = function () {
     server.close(() => {
       console.log('connections closed')
       process.exit(0)
