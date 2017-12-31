@@ -34,6 +34,9 @@ const router = express.Router()
  *          type: array
  *          items:
  *            $ref: '#/definitions/Article'
+ *        examples:
+ *          application/json:
+ *            $ref: '/api/examples/noticia-geral.json'
  */
 router.get('/articles', (req, res) => {
   let { limit = '10', skip = '0', sort = '0' } = req.query
@@ -96,6 +99,9 @@ router.get('/articles', (req, res) => {
  *        description: 'Uma notícia completa'
  *        schema:
  *          $ref: '#/definitions/Article'
+ *        examples:
+ *          application/json:
+ *            $ref: '/api/examples/noticia-especifica.json'
  */
 router.get('/articles/:code', (req, res) => {
   let { code } = req.params

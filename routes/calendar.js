@@ -134,6 +134,9 @@ router.get('/calendars/:publisher', (req, res) => {
  *        description: 'Um calendário recente'
  *        schema:
  *          $ref: '#/definitions/Calendar'
+ *        examples:
+ *          application/json:
+ *            $ref: '/api/examples/calendario.json'
  */
 router.get('/calendars/:publisher/latest', (req, res) => {
   const { publisher } = req.params

@@ -133,6 +133,9 @@ router.get('/menus/:publisher', (req, res) => {
  *        description: 'Um cardápio recente'
  *        schema:
  *          $ref: '#/definitions/Menu'
+ *        examples:
+ *          application/json:
+ *            $ref: '/api/examples/cardapio.json'
  */
 router.get('/menus/:publisher/latest', (req, res) => {
   const { publisher } = req.params
