@@ -1,4 +1,5 @@
 const express = require('express')
+const { join } = require('path')
 const logger = require('morgan')
 const apiDocs = require('swagger-jsdoc')
 const apiUI = require('swagger-ui-express')
@@ -63,8 +64,11 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 app.get('/', (_, res) => res.render('index', { options: { hour: '2-digit', minute: '2-digit' } }))
-app.get('/spec.json', (_, res) => res.json(apiSpec))
-app.use('/docs', apiUI.serve, apiUI.setup(apiSpec))
+
+app.get('/api/spec.json', (_, res) => res.json(apiSpec))
+app.use('/api/examples', express.static(join(__dirname, 'examples')))
+
+app.use('/docs', apiUI.serve, apiUI.setup(null, { swaggerUrl: '/api/spec.json' }))
 
 app.use('/api', users)
 app.use('/api', menus)
