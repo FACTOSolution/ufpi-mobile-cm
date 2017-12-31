@@ -1,36 +1,36 @@
 {
-  "title":"Calendário Acadêmico dos Cursos de Graduação 2017.4",
-  "year":2017,
-  "events":[
+  "title": "Calendário Acadêmico dos Cursos de Graduação 2017.4",
+  "year": 2017,
+  "events": [
     {
-      "title":"Solicitação online da Oferta de Disciplinas para o Período Letivo 2017.4 pelas Coordenações de Cursos",
-      "startDate":"2017-12-18T00:00:00-03:00"
+      "title": "Solicitação online da Oferta de Disciplinas para o Período Letivo 2017.4 pelas Coordenações de Cursos",
+      "startDate": "2017-12-18T00:00:00-03:00"
     },
     {
-      "title":"Confirmação da Oferta de Disciplinas para o Período 2017.4 pelos Departamentos de Ensino e Coordenações de Curso",
-      "startDate":"2017-12-19T00:00:00-03:00"
+      "title": "Confirmação da Oferta de Disciplinas para o Período 2017.4 pelos Departamentos de Ensino e Coordenações de Curso",
+      "startDate": "2017-12-19T00:00:00-03:00"
     },
     {
-      "title":"Matrícula Compulsória pelas Coordenações de Curso para o Período Letivo Especial 2017.4",
-      "startDate":"2017-12-20T00:00:00-03:00",
-      "endDate":"2017-12-21T00:00:00-03:00"
+      "title": "Matrícula Compulsória pelas Coordenações de Curso para o Período Letivo Especial 2017.4",
+      "startDate": "2017-12-20T00:00:00-03:00",
+      "endDate": "2017-12-21T00:00:00-03:00"
     },
     {
-      "title":"Início das aulas do Período Letivo 2017.4",
-      "startDate":"2017-12-20T00:00:00-03:00"
+      "title": "Início das aulas do Período Letivo 2017.4",
+      "startDate": "2017-12-20T00:00:00-03:00"
     },
     {
-      "title":"Conclusão das aulas do Período Letivo 2017.4",
-      "startDate":"2018-01-26T00:00:00-03:00"
+      "title": "Conclusão das aulas do Período Letivo 2017.4",
+      "startDate": "2018-01-26T00:00:00-03:00"
     },
     {
-      "title":"Digitação do Resultado Final do Rendimento Acadêmico dos alunos referente ao Período Letivo 2017.4 pelos Docentes",
-      "startDate":"2018-01-26T00:00:00-03:00",
-      "endDate":"2018-01-27T00:00:00-03:00"
+      "title": "Digitação do Resultado Final do Rendimento Acadêmico dos alunos referente ao Período Letivo 2017.4 pelos Docentes",
+      "startDate": "2018-01-26T00:00:00-03:00",
+      "endDate": "2018-01-27T00:00:00-03:00"
     },
     {
-      "title":"Último dia para Realização do Exame Final do Período Letivo 2017.4",
-      "startDate":"2018-01-27T00:00:00-03:00"
+      "title": "Último dia para Realização do Exame Final do Período Letivo 2017.4",
+      "startDate": "2018-01-27T00:00:00-03:00"
     }
   ]
 }

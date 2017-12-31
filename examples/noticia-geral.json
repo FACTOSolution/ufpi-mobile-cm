@@ -1,14 +1,10 @@
-{
-  "code": 10000,
-  "titulo": "Resultado final do processo seletivo para professor substituto de Letras - Aramaico",
-  "href": "http://ufpi.br/ultimas-noticias-ufpi/10000-resultado-final-do-processo-seletivo-para-professor-substituto-de-letras-aramaico",
-  "_data": "25/12/17",
-  "hora": "10h33",
-  "createdAt": "2017-12-25T13:33:00.000Z",
-  "images": ["https://upload.wikimedia.org/wikipedia/commons/b/b9/Targum.jpg"],
-  "links": ["https://pt.wikipedia.org/wiki/Aramaico"],
-  "text": [
-    "A Universidade Federal do Piauí (UFPI), por meio da Coordenação de Letras Estrangeiras do Centro de Ciências Humanas e Letras (CCHL), torna público o resultado final da seleção para professor substituto correspondente a classe Auxiliar, nível I em regime de tempo integral, para o Curso de Letras - Aramaico.",
-    "Confira aqui."
-  ]
-}
+[
+  {
+    "code": 10000,
+    "titulo": "Resultado final do processo seletivo para professor substituto de Letras - Aramaico",
+    "href": "http://ufpi.br/ultimas-noticias-ufpi/10000-resultado-final-do-processo-seletivo-para-professor-substituto-de-letras-aramaico",
+    "_data": "25/12/17",
+    "hora": "10h33",
+    "createdAt": "2017-12-25T13:33:00.000Z"
+  }
+]
