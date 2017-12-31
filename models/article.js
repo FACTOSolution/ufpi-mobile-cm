@@ -34,10 +34,10 @@ const mongoose = require('mongoose')
  *      createdAt:
  *        type: string
  *        format: date-time
- *      required:
- *        - code
- *        - titulo
- *        - href
+ *    required:
+ *      - code
+ *      - titulo
+ *      - href
  */
 const ArticleSchema = new mongoose.Schema({
   code: { type: Number, unique: true },
