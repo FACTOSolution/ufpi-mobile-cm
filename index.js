@@ -31,6 +31,19 @@ const apiSpec = apiDocs({
         type: 'basic'
       }
     },
+    tags: [{
+      name: 'notícias',
+      description: 'Notícias'
+    }, {
+      name: 'calendários',
+      description: 'Calendários'
+    }, {
+      name: 'cardápios',
+      description: 'Cardápios'
+    }, {
+      name: 'usuários',
+      description: 'Usuários'
+    }],
     basePath: '/api'
   },
   apis: ['./routes/*.js', './models/*.js']
