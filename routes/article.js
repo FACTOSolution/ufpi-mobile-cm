@@ -14,6 +14,19 @@ const router = express.Router()
  *    summary: 'Recupera uma lista de notícias'
  *    tags:
  *      - 'notícias'
+ *    parameters:
+ *      - in: query
+ *        name: limit
+ *        type: integer
+ *        description: 'Número de notícias retornadas'
+ *      - in: query
+ *        name: skip
+ *        type: integer
+ *        description: 'Número de notícias que serão ignoradas antes de coletar a lista resultante'
+ *      - in: query
+ *        name: sort
+ *        type: integer
+ *        description: 'Como ordenar o resultado: 1 = ascendente; -1 = descendente'
  *    responses:
  *      200:
  *        description: 'Uma lista de notícias'
@@ -112,6 +125,15 @@ router.get('/articles/:code', (req, res) => {
  *    summary: 'Requisita a atualização das notícias na API'
  *    tags:
  *      - 'notícias'
+ *    parameters:
+ *      - in: query
+ *        name: pages
+ *        type: integer
+ *        description: 'O número de páginas de notícias lidas pelo scraper'
+ *      - in: query
+ *        name: start
+ *        type: integer
+ *        description: 'A página que o scraper iniciará'
  *    responses:
  *      200:
  *        description: 'Uma mensagem de estado'
