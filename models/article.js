@@ -75,7 +75,7 @@ ArticleSchema.options.toJSON.transform = function jsonTransform(doc, ret, option
 
 ArticleSchema.statics.insertFromScraper = function (result, done) {
   result.forEach((v) => {
-    v.code = Number(v.link.match(/\d+/)[0])
+    v.code = Number(v.address.match(/\d+/)[0])
     v.text = v.data.text.filter(p => p.length > 0)
     v.links = v.data.links.filter(p => p.length > 0)
     v.images = v.data.images.filter(p => p.length > 0)
