@@ -81,51 +81,6 @@ router.get('/articles', (req, res) => {
 
 /**
  * @swagger
- * /articles/{code}:
- *  get:
- *    summary: 'Recupera uma notícia específica'
- *    tags:
- *      - 'notícias'
- *    parameters:
- *      -
- *        name: 'code'
- *        in: path
- *        description: 'Código de uma notícia'
- *        required: true
- *        schema:
- *          $ref: '#/definitions/Article/properties/code'
- *    responses:
- *      200:
- *        description: 'Uma notícia completa'
- *        schema:
- *          $ref: '#/definitions/Article'
- *        examples:
- *          application/json:
- *            $ref: '/api/examples/noticia-especifica.json'
- */
-router.get('/articles/:code', (req, res) => {
-  let { code } = req.params
-
-  if (!code || !isInt(code)) {
-    return res.status(400).send('URL `code` param must be an integer')
-  }
-
-  code = toInt(code)
-
-  Article
-    .findOne({ code })
-    .select({ _id: 0, __v: 0, updatedAt: 0 })
-    .exec((err, article) => {
-      if (err) {
-        return res.status(500).send(err.message)
-      }
-
-      res.status(200).json(article)
-    })
-})
-
-/**
- * @swagger
  * /articles/update:
  *  get:
  *    summary: 'Requisita a atualização das notícias na API'
@@ -199,6 +154,51 @@ router.get('/articles/update', (req, res) => {
       })
     })
   })
+})
+
+/**
+ * @swagger
+ * /articles/{code}:
+ *  get:
+ *    summary: 'Recupera uma notícia específica'
+ *    tags:
+ *      - 'notícias'
+ *    parameters:
+ *      -
+ *        name: 'code'
+ *        in: path
+ *        description: 'Código de uma notícia'
+ *        required: true
+ *        schema:
+ *          $ref: '#/definitions/Article/properties/code'
+ *    responses:
+ *      200:
+ *        description: 'Uma notícia completa'
+ *        schema:
+ *          $ref: '#/definitions/Article'
+ *        examples:
+ *          application/json:
+ *            $ref: '/api/examples/noticia-especifica.json'
+ */
+router.get('/articles/:code', (req, res) => {
+  let { code } = req.params
+
+  if (!code || !isInt(code)) {
+    return res.status(400).send('URL `code` param must be an integer')
+  }
+
+  code = toInt(code)
+
+  Article
+    .findOne({ code })
+    .select({ _id: 0, __v: 0, updatedAt: 0 })
+    .exec((err, article) => {
+      if (err) {
+        return res.status(500).send(err.message)
+      }
+
+      res.status(200).json(article)
+    })
 })
 
 module.exports = router
