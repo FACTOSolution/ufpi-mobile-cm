@@ -24,6 +24,16 @@ const EventSchema = new mongoose.Schema({
   endDate: Date
 }, { _id: false })
 
+EventSchema.virtual('startTime').get(function () {
+  return this.startDate.getTime()
+})
+
+EventSchema.virtual('endTime').get(function () {
+  return this.endDate ? this.endDate.getTime() : undefined
+})
+
+EventSchema.set('toJSON', { virtuals: true, getters: false, transform: deleteIdTransform })
+
 /**
  * @swagger
  * definitions:
@@ -49,7 +59,7 @@ const EventSchema = new mongoose.Schema({
  */
 const CalendarSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  year: { type: Number, default: () => (new Date()).getFullYear() },
+  year: { type: Number, default: () => (new Date(Date.now())).getFullYear() },
   events: [EventSchema],
   publisher: {
     type: mongoose.SchemaTypes.ObjectId,
@@ -58,6 +68,14 @@ const CalendarSchema = new mongoose.Schema({
   }
 }, { timestamps: true })
 
+CalendarSchema.set('toJSON', { virtuals: true, getters: false, transform: deleteIdTransform, versionKey: false })
+
 const Calendar = mongoose.model('Calendar', CalendarSchema)
+
+function deleteIdTransform(doc, ret, options) {
+  delete ret.id
+  delete ret._id
+  return ret
+}
 
 module.exports = Calendar

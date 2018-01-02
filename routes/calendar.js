@@ -103,7 +103,7 @@ router.get('/calendars/:publisher', (req, res) => {
 
   query
     .sort({ createdAt: sort, year: sort })
-    .select({ _id: 0, '__v': 0, createdAt: 0, updatedAt: 0, publisher: 0 })
+    .select({ updatedAt: 0, publisher: 0 })
     .limit(limit)
     .exec((err, data) => {
       if (err) {
@@ -148,7 +148,7 @@ router.get('/calendars/:publisher/latest', (req, res) => {
   Calendar
     .findOne({ publisher })
     .sort({ year: -1, createdAt: -1 })
-    .select({ _id: 0, '__v': 0, createdAt: 0, updatedAt: 0, publisher: 0 })
+    .select({ updatedAt: 0, publisher: 0 })
     .exec((err, calendar) => {
       if (err) {
         return res.status(500).send(err.message)
