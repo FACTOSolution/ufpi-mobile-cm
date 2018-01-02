@@ -15,6 +15,7 @@ const mongoose = require('mongoose')
  *        format: uri
  *      _data:
  *        type: string
+ *        format: date
  *      hora:
  *        type: string
  *      text:
