@@ -14,9 +14,14 @@ const mongoose = require('mongoose')
  *      endDate:
  *        type: string
  *        format: date-time
+ *      startTime:
+ *        type: integer
+ *      endTime:
+ *        type: integer
  *    required:
  *      - title
  *      - startDate
+ *      - startTime
  */
 const EventSchema = new mongoose.Schema({
   title: { type: String, required: true },
