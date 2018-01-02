@@ -42,14 +42,36 @@ const mongoose = require('mongoose')
  */
 const ArticleSchema = new mongoose.Schema({
   code: { type: Number, unique: true },
-  titulo: { type: String, required: true },
-  href: { type: String, required: true },
-  _data: String,
-  hora: String,
+  title: { type: String, required: true, alias: 'titulo' },
+  address: { type: String, required: true, alias: 'href' },
   text: [String],
   images: [String],
   links: [String]
 }, { timestamps: true })
+
+ArticleSchema.virtual('_data').get(function virtualData() {
+  return this.createdAt.toLocaleDateString('en-GB', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'America/Fortaleza' })
+})
+
+ArticleSchema.virtual('hora').get(function virtualHora() {
+  return this.createdAt.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Fortaleza' })
+})
+
+ArticleSchema.set('toJSON', { virtuals: true, getters: false, versionKey: false })
+
+if (!ArticleSchema.options.toJSON) {
+  ArticleSchema.options.toJSON = {}
+}
+
+ArticleSchema.options.toJSON.transform = function jsonTransform(doc, ret, options) {
+  delete ret.id
+  delete ret._id
+  delete ret.title
+  delete ret.address
+  delete ret.updatedAt
+
+  return ret
+}
 
 ArticleSchema.statics.insertFromScraper = function (result, done) {
   result.forEach((v) => {
@@ -58,8 +80,8 @@ ArticleSchema.statics.insertFromScraper = function (result, done) {
     v.links = v.data.links.filter(p => p.length > 0)
     v.images = v.data.images.filter(p => p.length > 0)
 
-    const time = v.time.split('h')
-    const date = v.date.split('/')
+    const time = v.timeStr.split('h')
+    const date = v.dateStr.split('/')
     const dateTime = new Date('2000-01-01T00:00:00-03:00')
 
     dateTime.setFullYear(2000 + Number(date[2]), Number(date[1]) - 1, Number(date[0]))
@@ -68,16 +90,9 @@ ArticleSchema.statics.insertFromScraper = function (result, done) {
 
     v.createdAt = dateTime
 
-    v['titulo'] = v.title
-    v['href'] = v.link
-    v['_data'] = v.date
-    v['hora'] = v.time
-
-    delete v.title
-    delete v.link
-    delete v.date
-    delete v.time
     delete v.data
+    delete v.dateStr
+    delete v.timeStr
   })
 
   const newCodes = result.map(v => v.code)

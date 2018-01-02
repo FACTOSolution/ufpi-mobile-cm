@@ -28,9 +28,9 @@ function fetchPages(numberOfPages = 1, startPage = 0, done = (_) => void (0)) {
 
   x(url.toString(), '.tileItem', [{
     title: '.tileHeadline a | trim',
-    link: '.tileHeadline a@href',
-    date: '.tileInfo li:nth-child(3) | trim',
-    time: '.tileInfo li:nth-child(4) | trim',
+    address: '.tileHeadline a@href',
+    dateStr: '.tileInfo li:nth-child(3) | trim',
+    timeStr: '.tileInfo li:nth-child(4) | trim',
     data: x(`.tileHeadline a@href | append:?${baseParams}`, {
       text: ['.item-page p | trim'],
       images: ['.item-page a ~ p img@src'],
