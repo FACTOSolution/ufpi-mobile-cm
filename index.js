@@ -79,7 +79,7 @@ app.get('/api/login', passport.authenticate('basic', { session: false }), (req, 
   res.status(200).render('login', { userId: req.user._id, userEmail: req.user.email })
 })
 
-init(() => {
+init.then(() => {
   const server = app.listen(PORT, () => {
     const props = server.address()
 
