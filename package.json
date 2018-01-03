@@ -25,6 +25,7 @@
     "ejs": "2.5.7",
     "express": "4.16.2",
     "foreman": "2.0.0",
+    "full-icu": "1.2.0",
     "mongodb": "3.0.0-rc0",
     "mongoose": "5.0.0-rc0",
     "morgan": "1.9.0",
