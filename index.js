@@ -15,7 +15,7 @@ const calendars = require('./routes/calendar')
 const articles = require('./routes/article')
 const notifications = require('./routes/notification')
 
-const PORT = process.env.PORT
+const { PORT, HOSTURL } = process.env
 
 const app = express()
 
@@ -67,10 +67,12 @@ app.use(express.json())
 app.get('/', (_, res) => res.render('index', { options: { hour: '2-digit', minute: '2-digit' } }))
 
 app.get('/api/spec.json', (_, res) => res.json(apiSpec))
+
+const specURL = `${HOSTURL}${apiSpec.basePath}/spec.json`
+
+app.use('/docs', apiUI.serve, apiUI.setup(null, { swaggerUrl: specURL }))
+
 app.use('/api/examples', express.static(join(__dirname, 'examples')))
-
-app.use('/docs', apiUI.serve, apiUI.setup(null, { swaggerUrl: '/api/spec.json' }))
-
 app.use('/api', users)
 app.use('/api', menus)
 app.use('/api', calendars)
