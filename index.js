@@ -13,6 +13,7 @@ const users = require('./routes/user')
 const menus = require('./routes/menu')
 const calendars = require('./routes/calendar')
 const articles = require('./routes/article')
+const notifications = require('./routes/notification')
 
 const PORT = process.env.PORT
 
@@ -74,6 +75,7 @@ app.use('/api', users)
 app.use('/api', menus)
 app.use('/api', calendars)
 app.use('/api', articles)
+app.use('/api', notifications)
 
 app.get('/api/login', passport.authenticate('basic', { session: false }), (req, res) => {
   res.status(200).render('login', { userId: req.user._id, userEmail: req.user.email })
