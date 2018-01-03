@@ -55,13 +55,7 @@ router.post('/menus', passport.authenticate('basic', { session: false }), (req, 
  *    tags:
  *      - 'cardápios'
  *    parameters:
- *      -
- *        name: 'id'
- *        in: path
- *        description: 'Identificador do usuário associado ao cardápio'
- *        required: true
- *        schema:
- *          $ref: '#/definitions/User/properties/id'
+ *      - $ref: '#/parameters/pathUserId'
  *    responses:
  *      200:
  *        description: 'Uma lista de cardápios'
@@ -121,13 +115,7 @@ router.get('/menus/:publisher', (req, res) => {
  *    tags:
  *      - 'cardápios'
  *    parameters:
- *      -
- *        name: 'id'
- *        in: path
- *        description: 'Identificador do usuário associado ao menu'
- *        required: true
- *        schema:
- *          $ref: '#/definitions/User/properties/id'
+ *      - $ref: '#/parameters/pathUserId'
  *    responses:
  *      200:
  *        description: 'Um cardápio recente'

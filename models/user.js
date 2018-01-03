@@ -3,6 +3,14 @@ const bcrypt = require('bcryptjs')
 
 /**
  * @swagger
+ * parameters:
+ *  pathUserId:
+ *    in: path
+ *    name: id
+ *    required: true
+ *    type: string
+ *    format: uuid
+ *    description: Identificador de um usuário cadastrado
  * definitions:
  *  User:
  *    type: object

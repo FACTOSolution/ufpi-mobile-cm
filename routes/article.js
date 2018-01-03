@@ -169,8 +169,7 @@ router.get('/articles/update', (req, res) => {
  *        in: path
  *        description: 'Código de uma notícia'
  *        required: true
- *        schema:
- *          $ref: '#/definitions/Article/properties/code'
+ *        type: integer
  *    responses:
  *      200:
  *        description: 'Uma notícia completa'

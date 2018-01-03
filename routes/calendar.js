@@ -55,13 +55,7 @@ router.post('/calendars', passport.authenticate('basic', { session: false }), (r
  *    tags:
  *      - 'calendários'
  *    parameters:
- *      -
- *        name: 'id'
- *        in: path
- *        description: 'Identificador do usuário associado ao calendário'
- *        required: true
- *        schema:
- *          $ref: '#/definitions/User/properties/id'
+ *      - $ref: '#/parameters/pathUserId'
  *    responses:
  *      200:
  *        description: 'Uma lista de calendários'
@@ -122,13 +116,7 @@ router.get('/calendars/:publisher', (req, res) => {
  *    tags:
  *      - 'calendários'
  *    parameters:
- *      -
- *        name: 'id'
- *        in: path
- *        description: 'Identificador do usuário associado ao calendário'
- *        required: true
- *        schema:
- *          $ref: '#/definitions/User/properties/id'
+ *      - $ref: '#/parameters/pathUserId'
  *    responses:
  *      200:
  *        description: 'Um calendário recente'

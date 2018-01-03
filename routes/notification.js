@@ -53,13 +53,7 @@ router.post('/notifications', passport.authenticate('basic', { session: false })
  *    tags:
  *      - 'notificações'
  *    parameters:
- *      -
- *        name: 'id'
- *        in: path
- *        description: 'Identificador do usuário associado à notificação'
- *        required: true
- *        schema:
- *          $ref: '#/definitions/User/properties/id'
+ *      - $ref: '#/parameters/pathUserId'
  *    responses:
  *      200:
  *        description: 'Uma lista de notificações'
