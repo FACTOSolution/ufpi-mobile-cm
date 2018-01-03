@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { dateStringFrom, timeStringFrom } = require('../util')
 
 /**
  * @swagger
@@ -49,21 +50,13 @@ const ArticleSchema = new mongoose.Schema({
   links: [String]
 }, { timestamps: true })
 
-ArticleSchema.virtual('_data').get(function virtualData() {
-  return this.createdAt.toLocaleDateString('en-GB', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'America/Fortaleza' })
-})
+ArticleSchema.virtual('_data').get(dateStringFrom('createdAt'))
 
-ArticleSchema.virtual('hora').get(function virtualHora() {
-  return this.createdAt.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Fortaleza' })
-})
+ArticleSchema.virtual('hora').get(timeStringFrom('createdAt'))
 
-ArticleSchema.set('toJSON', { virtuals: true, getters: false, versionKey: false })
+ArticleSchema.set('toJSON', { virtuals: true, getters: false, versionKey: false, transform })
 
-if (!ArticleSchema.options.toJSON) {
-  ArticleSchema.options.toJSON = {}
-}
-
-ArticleSchema.options.toJSON.transform = function jsonTransform(doc, ret, options) {
+function transform(doc, ret, options) {
   delete ret.id
   delete ret._id
   delete ret.title

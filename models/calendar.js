@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { deleteIdTransform } = require('../util')
 
 /**
  * @swagger
@@ -29,11 +30,11 @@ const EventSchema = new mongoose.Schema({
   endDate: Date
 }, { _id: false })
 
-EventSchema.virtual('startTime').get(function () {
+EventSchema.virtual('startTime').get(function virtualStartTime() {
   return this.startDate.getTime()
 })
 
-EventSchema.virtual('endTime').get(function () {
+EventSchema.virtual('endTime').get(function virtualEndTime() {
   return this.endDate ? this.endDate.getTime() : undefined
 })
 
@@ -76,11 +77,5 @@ const CalendarSchema = new mongoose.Schema({
 CalendarSchema.set('toJSON', { virtuals: true, getters: false, transform: deleteIdTransform, versionKey: false })
 
 const Calendar = mongoose.model('Calendar', CalendarSchema)
-
-function deleteIdTransform(doc, ret, options) {
-  delete ret.id
-  delete ret._id
-  return ret
-}
 
 module.exports = Calendar
