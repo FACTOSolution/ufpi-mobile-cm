@@ -20,9 +20,21 @@ function deleteIdTransform(doc, ret, options) {
   return ret
 }
 
+function applyTransforms(...transforms) {
+  return function transformChain(doc, ret, options) {
+    const final = transforms.reduce((prev, curr, index) => {
+      const result = curr(doc, prev, options)
+      return result
+    }, ret)
+
+    return final
+  }
+}
+
 module.exports = {
   isValidDate,
   dateStringFrom,
   timeStringFrom,
+  applyTransforms,
   deleteIdTransform
 }
