@@ -23,7 +23,7 @@ const router = express.Router()
  *        description: 'O novo calendário que será adicionado'
  *        required: true
  *        schema:
- *          $ref: '#/definitions/Calendar'
+ *          $ref: '#/definitions/NewCalendar'
  *    responses:
  *      200:
  *        description: 'O calendário adicionado'

@@ -4,6 +4,20 @@ const { deleteIdTransform } = require('../util')
 /**
  * @swagger
  * definitions:
+ *  NewEvent:
+ *    type: object
+ *    properties:
+ *      title:
+ *        type: string
+ *      startDate:
+ *        type: string
+ *        format: date-time
+ *      endDate:
+ *        type: string
+ *        format: date-time
+ *    required:
+ *      - title
+ *      - startDate
  *  Event:
  *    type: object
  *    properties:
@@ -43,6 +57,19 @@ EventSchema.set('toJSON', { virtuals: true, getters: false, transform: deleteIdT
 /**
  * @swagger
  * definitions:
+ *  NewCalendar:
+ *    type: object
+ *    properties:
+ *      title:
+ *        type: string
+ *      year:
+ *        type: integer
+ *      events:
+ *        type: array
+ *        items:
+ *          $ref: '#/definitions/NewEvent'
+ *    required:
+ *      - title
  *  Calendar:
  *    type: object
  *    properties:
