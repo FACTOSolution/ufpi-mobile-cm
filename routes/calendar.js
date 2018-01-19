@@ -71,13 +71,13 @@ router.get('/calendars/:publisher', (req, res) => {
     return res.status(400).send('Invalid publisher id')
   }
 
-  let { year = null, limit = '1', sort = '0' } = req.query
+  let { year = null, limit = '5', sort = '-1' } = req.query
 
   if (year !== null && !isInt(year, { gt: 999, lt: 10000 })) {
     return res.status(400).send('Invalid `year`')
   }
 
-  if (!isInt(limit, { min: 1, max: 4 })) {
+  if (!isInt(limit, { min: 1, max: 10 })) {
     return res.status(400).send('Invalid `limit`')
   }
 

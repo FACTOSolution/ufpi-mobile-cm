@@ -69,7 +69,7 @@ router.get('/notifications/:publisher', (req, res) => {
     return res.status(400).send('Invalid publisher id')
   }
 
-  let { limit = '10', skip = '0', sort = '0' } = req.query
+  let { limit = '10', skip = '0', sort = '-1' } = req.query
 
   if (!isInt(limit)) {
     return res.status(400).send('Param `limit` must be an integer')

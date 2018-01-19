@@ -39,7 +39,7 @@ const router = express.Router()
  *            $ref: '/api/examples/noticia-geral.json'
  */
 router.get('/articles', (req, res) => {
-  let { limit = '10', skip = '0', sort = '0' } = req.query
+  let { limit = '10', skip = '0', sort = '-1' } = req.query
 
   if (!isInt(limit)) {
     return res.status(400).send('Param `limit` must be an integer')
