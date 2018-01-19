@@ -31,11 +31,11 @@ const router = express.Router()
  *          $ref: '#/definitions/Calendar'
  */
 router.post('/calendars', passport.authenticate('basic', { session: false }), (req, res) => {
-  const { title, year, events } = req.body
+  const { title, kind, year, events } = req.body
 
   Calendar
     .create({
-      title, year, events,
+      title, kind, year, events,
       publisher: req.user._id
     })
     .then((calendar) => {
