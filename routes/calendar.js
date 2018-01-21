@@ -1,6 +1,6 @@
 const express = require('express')
 const passport = require('passport')
-const { isInt, toInt } = require('validator')
+const { isInt, toInt, isIn } = require('validator')
 
 const Calendar = require('../models/calendar')
 const isValidOid = require('mongoose').Types.ObjectId.isValid
@@ -71,7 +71,7 @@ router.get('/calendars/:publisher', (req, res) => {
     return res.status(400).send('Invalid publisher id')
   }
 
-  let { year = null, limit = '5', sort = '-1' } = req.query
+  let { year = null, limit = '5', sort = '-1', kind = null } = req.query
 
   if (year !== null && !isInt(year, { gt: 999, lt: 10000 })) {
     return res.status(400).send('Invalid `year`')
@@ -89,10 +89,18 @@ router.get('/calendars/:publisher', (req, res) => {
 
   sort = toInt(sort) < 0 ? -1 : 1
 
+  if (kind !== null && !isIn(kind, ['ctt', 'grad', 'pos'])) {
+    return res.status(400).send('Invalid `kind`')
+  }
+
   const query = Calendar.find({ publisher })
 
   if (year !== null) {
     query.where('year').lte(year)
+  }
+
+  if (kind !== null) {
+    query.where('kind').equals(kind)
   }
 
   query
@@ -133,8 +141,19 @@ router.get('/calendars/:publisher/latest', (req, res) => {
     return res.status(400).send('Invalid publisher id')
   }
 
-  Calendar
-    .findOne({ publisher })
+  const { kind = null } = req.query
+
+  if (kind !== null && !isIn(kind, ['ctt', 'grad', 'pos'])) {
+    return res.status(400).send('Invalid `kind`')
+  }
+
+  const query = Calendar.findOne({ publisher })
+
+  if (kind !== null) {
+    query.where('kind').equals(kind)
+  }
+
+  query
     .sort({ year: -1, createdAt: -1 })
     .select({ updatedAt: 0, publisher: 0 })
     .exec((err, calendar) => {
