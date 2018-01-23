@@ -39,8 +39,7 @@ router.post('/menus', passport.authenticate('basic', { session: false }), (req, 
       publisher: req.user._id
     })
     .then((menu) => {
-      const { monday, tuesday, wednesday, thursday, friday, saturday, startDate, endDate } = menu
-      res.status(200).json({ monday, tuesday, wednesday, thursday, friday, saturday, startDate, endDate })
+      res.status(200).json(menu)
     })
     .catch((err) => {
       res.status(500).send(err.message)

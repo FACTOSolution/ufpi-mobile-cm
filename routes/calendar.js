@@ -39,8 +39,7 @@ router.post('/calendars', passport.authenticate('basic', { session: false }), (r
       publisher: req.user._id
     })
     .then((calendar) => {
-      const { title, year, events } = calendar
-      res.status(200).json({ title, year, events })
+      res.status(200).json(calendar)
     })
     .catch((err) => {
       res.status(500).send(err.message)
