@@ -70,6 +70,8 @@ EventSchema.set('toJSON', { virtuals: true, getters: false, transform: deleteIdT
  *          - grad
  *          - pos
  *          - ctt
+ *      campus:
+ *        type: string
  *      events:
  *        type: array
  *        items:
@@ -77,6 +79,7 @@ EventSchema.set('toJSON', { virtuals: true, getters: false, transform: deleteIdT
  *    required:
  *      - title
  *      - kind
+ *      - campus
  *  Calendar:
  *    type: object
  *    properties:
@@ -92,6 +95,8 @@ EventSchema.set('toJSON', { virtuals: true, getters: false, transform: deleteIdT
  *          - grad
  *          - pos
  *          - ctt
+ *      campus:
+ *        type: string
  *      events:
  *        type: array
  *        items:
@@ -103,11 +108,13 @@ EventSchema.set('toJSON', { virtuals: true, getters: false, transform: deleteIdT
  *      - publisher
  *      - title
  *      - kind
+ *      - campus
  */
 const CalendarSchema = new mongoose.Schema({
   title: { type: String, required: true },
   year: { type: Number, default: () => (new Date(Date.now())).getFullYear() },
   kind: { type: String, enum: ['ctt', 'grad', 'pos'], required: true },
+  campus: { type: String, required: true },
   events: [EventSchema],
   publisher: {
     type: mongoose.SchemaTypes.ObjectId,

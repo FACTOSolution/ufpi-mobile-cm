@@ -31,11 +31,11 @@ const router = express.Router()
  *          $ref: '#/definitions/Calendar'
  */
 router.post('/calendars', passport.authenticate('basic', { session: false }), (req, res) => {
-  const { title, kind, year, events } = req.body
+  const { title, kind, year, campus, events } = req.body
 
   Calendar
     .create({
-      title, kind, year, events,
+      title, kind, year, campus, events,
       publisher: req.user._id
     })
     .then((calendar) => {
@@ -70,7 +70,7 @@ router.get('/calendars/:publisher', (req, res) => {
     return res.status(400).send('Invalid publisher id')
   }
 
-  let { year = null, limit = '5', sort = '-1', kind = null } = req.query
+  let { year = null, limit = '5', sort = '-1', kind = null, campus = null } = req.query
 
   if (year !== null && !isInt(year, { gt: 999, lt: 10000 })) {
     return res.status(400).send('Invalid `year`')
@@ -100,6 +100,10 @@ router.get('/calendars/:publisher', (req, res) => {
 
   if (kind !== null) {
     query.where('kind').equals(kind)
+  }
+
+  if (campus !== null) {
+    query.where('campus').equals(campus)
   }
 
   query
@@ -140,7 +144,7 @@ router.get('/calendars/:publisher/latest', (req, res) => {
     return res.status(400).send('Invalid publisher id')
   }
 
-  const { kind = null } = req.query
+  const { kind = null, campus = null } = req.query
 
   if (kind !== null && !isIn(kind, ['ctt', 'grad', 'pos'])) {
     return res.status(400).send('Invalid `kind`')
@@ -150,6 +154,10 @@ router.get('/calendars/:publisher/latest', (req, res) => {
 
   if (kind !== null) {
     query.where('kind').equals(kind)
+  }
+
+  if (campus !== null) {
+    query.where('campus').equals(campus)
   }
 
   query
