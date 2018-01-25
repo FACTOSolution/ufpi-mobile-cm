@@ -1,6 +1,8 @@
 {
   "title": "Calendário Acadêmico dos Cursos de Graduação 2017.4",
   "year": 2017,
+  "kind": "ctt",
+  "campus": "picos",
   "events": [
     {
       "title": "Solicitação online da Oferta de Disciplinas para o Período Letivo 2017.4 pelas Coordenações de Cursos",
