@@ -4,6 +4,26 @@ const { dateStringFrom, timeStringFrom } = require('../util')
 /**
  * @swagger
  * definitions:
+ *  GeneralArticle:
+ *    type: object
+ *    properties:
+ *      code:
+ *        type: integer
+ *      titulo:
+ *        type: string
+ *      href:
+ *        type: string
+ *        format: uri
+ *      _data:
+ *        type: string
+ *        format: date
+ *      hora:
+ *        type: string
+ *      createdAt:
+ *        type: string
+ *        format: date-time
+ *    example:
+ *      $ref: '/api/examples/noticia-geral.json'
  *  Article:
  *    type: object
  *    properties:

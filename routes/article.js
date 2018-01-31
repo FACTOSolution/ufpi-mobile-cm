@@ -33,10 +33,10 @@ const router = express.Router()
  *        schema:
  *          type: array
  *          items:
- *            $ref: '#/definitions/Article'
+ *            $ref: '#/definitions/GeneralArticle'
  *        examples:
  *          application/json:
- *            $ref: '/api/examples/noticia-geral.json'
+ *            $ref: '/api/examples/noticias.json'
  */
 router.get('/articles', (req, res) => {
   let { limit = '10', skip = '0', sort = '-1' } = req.query
