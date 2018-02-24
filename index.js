@@ -14,6 +14,7 @@ const menus = require('./routes/menu')
 const calendars = require('./routes/calendar')
 const articles = require('./routes/article')
 const notifications = require('./routes/notification')
+const admin = require('./routes/admin');
 
 const { PORT, HOSTURL } = process.env
 
@@ -71,6 +72,8 @@ app.get('/api/spec.json', (_, res) => res.json(apiSpec))
 const specURL = `${HOSTURL}${apiSpec.basePath}/spec.json`
 
 app.use('/docs', apiUI.serve, apiUI.setup(null, { swaggerUrl: specURL }))
+
+app.use('/admin', admin);
 
 app.use('/api/examples', express.static(join(__dirname, 'examples')))
 app.use('/api', users)

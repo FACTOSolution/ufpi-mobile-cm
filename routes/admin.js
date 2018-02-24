@@ -9,3 +9,5 @@ const AdminController = require('../controllers/adminController');
 
 // GET Login Home Page
 router.get('/', AdminController.index);
+
+module.exports = router;
