@@ -1,4 +1,5 @@
 const express = require('express')
+const session = require('express-session')
 const { join } = require('path')
 const logger = require('morgan')
 const apiDocs = require('swagger-jsdoc')
@@ -7,6 +8,7 @@ const passport = require('passport')
 const { BasicStrategy } = require('passport-http')
 const LocalStrategy = require('passport-local').Strategy
 const bodyParser = require('body-parser')
+const httpErrorPages = require('http-error-pages');
 
 const init = require('./db')
 const User = require('./models/user')
@@ -74,17 +76,27 @@ passport.serializeUser(function(user, done) {
 })
 
 passport.deserializeUser(function(_id, done) {
-  User.loadOne({ _id: _id }).then(function(user){
-    done(null, user);
-  }).catch(function(err){
-    done(err, null);
-  })
+  User.findById(_id)
+    .exec((err, user) => {
+      done(err, user)
+    })
 })
 
+app.use(session({ 
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false
+}))
 app.use(passport.initialize())
 app.use(passport.session())
 
 app.set('view engine', 'ejs')
+
+// Add Http Error Pages default
+httpErrorPages.express(app, {
+  lang: 'pt_BR',
+  footer: 'UFPI MOBILE'
+})
 
 if (process.env.NODE_ENV == 'development') {
   app.use(logger('short'))

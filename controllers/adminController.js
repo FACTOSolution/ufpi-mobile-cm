@@ -3,11 +3,12 @@ const passport = require('passport')
 const { body, validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
-
-exports.index = function(req, res) {
+// Display login page for admin area
+exports.index = function(req, res, next) {
     res.render('site-ufpi');
 }
 
+// Handle post request of login
 exports.auth = [
 
     // Validating fields
@@ -35,7 +36,7 @@ exports.auth = [
                 if (err) { return next(err); }
                 switch(user.kind){
                     case "CAL":
-                        return res.render('calendario');
+                        return res.redirect('/admin/calendar');
                     case "RU":
                         return res.render('restaurante');
                     case "EVEN":
@@ -47,3 +48,9 @@ exports.auth = [
         })(req, res, next);
     }
 ]
+
+exports.callendar_get = function(req, res, next) {
+    if (req.user.kind != 'CAL')
+        throw new Error('Server Error')
+    res.render('calendario')        
+}   
