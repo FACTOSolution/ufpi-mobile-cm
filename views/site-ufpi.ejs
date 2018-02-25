@@ -11,17 +11,17 @@
   #login-box{
 			background-color:#92b7;
 			width:380px;
-			height:260px;
-            margin: 140px auto 0px;
-            border-radius:8px;
-            opacity:0.5;
+			height:360px;
+      margin: 140px auto 0px;
+      border-radius:8px;
+      opacity:0.5;
     
                   
 		} 
    #login-box-interno{
       background-color:#fdfdfd;
       width:360px;
-      height:240px;
+      height:340px;
       position:absolute;
       margin:10px;
       border-radius:10px;
@@ -75,7 +75,7 @@
       margin-top:-10px;
     }
     #button{
-      width:50px;
+      width:70px;
       padding:5px 15px;
       margin-left:255px;
       border-radius:20px;
@@ -96,17 +96,27 @@
 <body>
   <div id="login-box">
     <div id="login-box-interno">
-      <div id="login-box-label">Autentication</div>
-      <div class="input-div"id="input-user">
-        <input type="email" placeholder="User or Email"></div>
-      <div class= "input-div"id="input-pass">
-        <input type="password"  placeholder="Password"></div>
-      <div id="button" >
-        <div id="botoes">Login </div>
-      </div>
-    
+      <div id="login-box-label">Login</div>
+      <form method="post" action="">
+        <div class="input-div"id="input-user">
+          <input type="email" placeholder="Usuário ou Email" name="user"></div>
+        <div class= "input-div"id="input-pass">
+          <input type="password"  placeholder="Password" name="password"></div>
+          <input type="submit" value="Login" id="button"></input>
+    </form>
+    <% if (locals.errors) { %>
+      <ul>
+        <% errors.forEach(function(err) { %>
+          <li><%= err.msg %></li>
+        <% }); %>
+      </ul>
+    <% } %>
+    <% if (locals.flashMessage) { %>
+      <ul>
+        <li><%= locals.flashMessage %></li>
+      </ul>
+    <% } %>
     </div>
-    
   </div>
 
 </body>

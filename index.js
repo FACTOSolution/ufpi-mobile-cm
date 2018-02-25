@@ -5,6 +5,7 @@ const apiDocs = require('swagger-jsdoc')
 const apiUI = require('swagger-ui-express')
 const passport = require('passport')
 const { BasicStrategy } = require('passport-http')
+const bodyParser = require('body-parser');
 
 const init = require('./db')
 const User = require('./models/user')
@@ -72,6 +73,9 @@ app.get('/api/spec.json', (_, res) => res.json(apiSpec))
 const specURL = `${HOSTURL}${apiSpec.basePath}/spec.json`
 
 app.use('/docs', apiUI.serve, apiUI.setup(null, { swaggerUrl: specURL }))
+
+// app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/admin', admin);
 
