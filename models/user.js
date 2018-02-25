@@ -21,6 +21,10 @@ const bcrypt = require('bcryptjs')
  *      email:
  *        type: string
  *        format: email
+ *      kind:
+ *        type: string
+ *        enum: [RU, CAL, EVEN] 
+ *        default: RU
  *  NewUser:
  *    type: object
  *    properties:
@@ -30,6 +34,10 @@ const bcrypt = require('bcryptjs')
  *      password:
  *        type: string
  *        format: password
+ *      kind:
+ *        type: string
+ *        enum: [RU, CAL, EVEN]
+ *        default: RU
  *    required:
  *      - email
  *      - password
@@ -43,6 +51,12 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  kind: {
+    type: String,
+    required: true,
+    enum: ['RU','CAL','EVEN'],
+    default: 'RU'
   }
 }, { timestamps: true })
 

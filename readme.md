@@ -14,21 +14,25 @@ As requisições HTTP para adicionar informações no servidor são protegidas p
 
 #### Usuários (users)
 
-Para criar um novo usuário, envie uma requisição com o método `POST` para o *endpoint* `/api/users`. Este endpoint aguarda um objeto **JSON**, que representa o novo usuário, no corpo da mensagem. Tal objeto tem duas propriedades do tipo `string`, a propriedade `email` e a propriedade `password`, como apresentado no exemplo abaixo:
+Para criar um novo usuário, envie uma requisição com o método `POST` para o *endpoint* `/api/users`. Este endpoint aguarda um objeto **JSON**, que representa o novo usuário, no corpo da mensagem. Tal objeto tem três propriedades do tipo `string`, a propriedade `email`, a propriedade `password` e a propriedade `kind`, como apresentado no exemplo abaixo:
 
 ```json
 {
   "email": "exemplo@email.com",
-  "password": "exemplo senha"
+  "password": "exemplo senha",
+  "kind": "CAL"
 }
 ```
+
+A propriedade `kind` só pode assumir 3 valores, `CAL`,`RU`,`EVEN`.
 
 Com o envio da requisição, a API confirma a adição do novo usuário com a identificação (`id`) desse usuário por meio de outro objeto JSON, por exemplo:
 
 ```json
 {
   "id": "aaa111bbb222ccc333ddd444",
-  "email": "exemplo@email.com"
+  "email": "exemplo@email.com",
+  "kind": "CAL"
 }
 ```
 

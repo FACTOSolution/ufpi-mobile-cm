@@ -27,10 +27,11 @@ const router = express.Router()
 router.post('/users', (req, res) => {
   User.create({
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    kind: req.body.kind
   })
     .then((user) => {
-      res.status(200).json({ id: user._id, email: user.email })
+      res.status(200).json({ id: user._id, email: user.email, kind: user.kind })
     })
     .catch((err) => {
       res.status(500).send(err.message)
@@ -59,8 +60,8 @@ router.get('/users', (req, res) => {
     }
 
     res.status(200).json(data.map((user) => {
-      const { _id, email } = user
-      return { id: _id, email }
+      const { _id, email, kind } = user
+      return { id: _id, email, kind }
     }))
   })
 })
