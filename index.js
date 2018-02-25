@@ -5,7 +5,8 @@ const apiDocs = require('swagger-jsdoc')
 const apiUI = require('swagger-ui-express')
 const passport = require('passport')
 const { BasicStrategy } = require('passport-http')
-const bodyParser = require('body-parser');
+const LocalStrategy = require('passport-local').Strategy
+const bodyParser = require('body-parser')
 
 const init = require('./db')
 const User = require('./models/user')
@@ -53,18 +54,44 @@ const apiSpec = apiDocs({
   apis: ['./routes/*.js', './models/*.js']
 })
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// Passport Configuration
+
+// Passport Basic Strategy for API Endpoints
 passport.use(new BasicStrategy(User.authorize))
 
-app.set('view engine', 'ejs')
+// Passport Local Strategy for Admin Auth
+passport.use(new LocalStrategy({
+    usernameField: "email",
+    passwordField: "password"
+}, User.authorize))
+
+// Passport serializer and deserializer functions
+passport.serializeUser(function(user, done) {
+  done(null, user._id)
+})
+
+passport.deserializeUser(function(_id, done) {
+  User.loadOne({ _id: _id }).then(function(user){
+    done(null, user);
+  }).catch(function(err){
+    done(err, null);
+  })
+})
 
 app.use(passport.initialize())
+app.use(passport.session())
+
+app.set('view engine', 'ejs')
 
 if (process.env.NODE_ENV == 'development') {
   app.use(logger('short'))
 }
 
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+// app.use(express.urlencoded({ extended: true }))
+// app.use(express.json())
 
 app.get('/', (_, res) => res.render('index', { options: { hour: '2-digit', minute: '2-digit' } }))
 
@@ -73,9 +100,6 @@ app.get('/api/spec.json', (_, res) => res.json(apiSpec))
 const specURL = `${HOSTURL}${apiSpec.basePath}/spec.json`
 
 app.use('/docs', apiUI.serve, apiUI.setup(null, { swaggerUrl: specURL }))
-
-// app.use(bodyParser.json())
-// app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/admin', admin);
 

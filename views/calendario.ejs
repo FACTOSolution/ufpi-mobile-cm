@@ -1,0 +1,176 @@
+		<!DOCTYPE html>
+		<html>
+			<head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width">
+			<title>Cadastro do calendário</title>
+			<style>
+				body{
+					background-color:#11a6ad;
+					}
+
+				form{
+				width:800px;
+				margin:auto;
+
+					}
+
+				label{
+				display:inline-block;
+				font-size:0.9em;
+				font-weight:bold;
+				width:160px;
+					}
+					
+				input,select{
+				display:inline-block;
+				width:300px;
+				background-color:#92b7;
+				height:26px;
+				margin: 14px auto 0px;
+				padding:3px;
+				border-radius:8px;
+				opacity:0.5;
+			
+						}
+
+				#nCalendario{
+					display:inline-block;
+					width:600px;
+					background-color:white;
+				}
+				legend{
+				
+					padding:15px;
+					
+					}
+					
+				#Calendario{
+					width:770px;
+				}
+				
+				#textIni{
+				text-align:center;
+				font:bold 20px sans-serif;
+				
+						}
+
+				
+			  
+
+				#button{
+				  float:right;
+				  width:120px;
+				  
+				  padding:5px 35px;
+				  border-radius:20px;
+				  font:bold 12px sans-serif;	
+				  border:1px solid #9eb9c3;
+				  color:"black";
+				  box-shadow:0px 0px 10px;
+				  background-color:gray;
+						}
+						
+						
+				#button-sair{
+				  float:left;
+				  width:100px;
+				  border-radius:20px;
+				  font:bold 12px sans-serif;	
+				  border:1px solid #9eb9c3;
+				  color:"black";
+				  box-shadow:0px 0px 10px;
+				  background-color:gray;
+				  margin-bottom:20px;
+						}
+						
+				
+				#button-sair:hover{
+				  background-color:lightgreen;
+				  cursor:pointer;
+							 }
+				#button:hover{
+				  background-color:lightgreen;
+				  cursor:pointer;
+							 }
+				
+			
+			
+		  </style>
+		</head>
+		<body>
+			<p id="textIni">Cadastro do  calendário</p>
+			<form method = "post" action="">
+				<fieldset id= "Calendario">
+				
+					<legend id="leg-cal">Informações do Calendario</legend>
+					<p><label id="labelName">Título  do Calendario:</label><input type= "text" name="nomeEv" id="nCalendario" placeholder=" 2018"/></p>
+					
+					<p>
+						<label id ="lAno">Ano </label>
+						<select id="s-dia" name="select-ano">
+							<option value ="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+							<option value="2021">2021</option>
+							
+						</select>
+					</p>
+					
+					
+					<p>
+						<label id="label-tipo">Tipo</label>
+						<select id="s-tipo" name="select-tipo">
+							<option value="GRADUAÇÂO">GRADUAÇÂO</option>
+							<option value="PÓS GRADUAÇÂO">PÓS GRADUAÇÂO</option>
+							<option value="CTT">CTT</option>
+							<option value="EAD">EAD</option>
+							<option value="LEDOC">LEDOC</option>
+							<option value="PARFOR">PARFOR</option>
+						</select>
+					</p>
+				
+					
+					
+					<p>
+						<label id="label-campus">Campus</label>
+						<select id="s-campus" name="select-campus">
+							<option value="BOM JESUS">BOM JESUS</option>
+							<option value="FLORIANO">FLORIANO</option>
+							<option value="PARNAIBA">PARNAIBA</option>
+							<option value="PICOS">PICOS</option>
+							<option value="PICOS">TERESINA</option>
+						</select>
+					</p>
+					
+					<fieldset>
+						<legend id ="leg-event">Eventos</legend>
+						<p>
+							<label id="label-titulo">Título</label>
+							<input id=" e-titulo" name="tituloevento" type="text" placeholder="Calourada Unificada 2018"/>
+						</p>
+						
+						<p>
+							<label id="label-datain">Data de ínicio</label>
+							<input id="e-datain" name="datainicio" type="date" />
+						</p>
+						
+						<p>
+							<label id="label-datafim">Data de fim</label>
+							<input id="e-datafim" name="datafim" type="date" />
+							<br>
+						</p>
+						
+					</fieldset>
+				
+				</fieldset>
+			
+				<input type="submit" value="Cadastrar" id="button"/>
+				<input type="submit" value="Sair" id="button-sair"/>
+				<br>
+				<br>
+				
+			</form>
+		</body>
+	</html>

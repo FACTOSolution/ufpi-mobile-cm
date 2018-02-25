@@ -11,7 +11,7 @@ exports.index = function(req, res) {
 exports.auth = [
 
     // Validating fields
-    body('user', 'Usuário não pode ser vázio').isLength({ min: 1 }).trim(),
+    body('email', 'Email não pode ser vázio').isLength({ min: 1 }).trim(),
     body('password', 'Senha não pode ser vázia').isLength({ min: 1 }).trim(),
 
     // Sanitize fields using wildcard
@@ -28,9 +28,22 @@ exports.auth = [
            return  res.render('site-ufpi', { errors: errors.array() });
         }
 
-        passport.authenticate('basic', function(err, user, info) {
+        passport.authenticate('local', function(err, user, info) {
             if (err) { return next(err); }
-            if(!user) { return res.render('site-ufpi', { flashMessage: "Usuário não encontrado" }) }
+            if (!user) { return res.render('site-ufpi', { flashMessage: "Usuário não encontrado" }); }
+            req.logIn(user, (err) => {
+                if (err) { return next(err); }
+                switch(user.kind){
+                    case "CAL":
+                        return res.render('calendario');
+                    case "RU":
+                        return res.render('restaurante');
+                    case "EVEN":
+                        return res.render('evento');
+                    default:
+                        return res.render('site-ufpi');
+                }
+            });
         })(req, res, next);
     }
 ]
