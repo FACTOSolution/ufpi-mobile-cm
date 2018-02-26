@@ -3,6 +3,7 @@
 			<head>
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width">
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 			<title>Cadastro do calendário</title>
 			<style>
 				body{
@@ -100,21 +101,20 @@
 		</head>
 		<body>
 			<p id="textIni">Cadastro do  calendário</p>
-			<form method = "post" action="">
+			<form id="calendar-form">
 				<fieldset id= "Calendario">
 				
 					<legend id="leg-cal">Informações do Calendario</legend>
-					<p><label id="labelName">Título  do Calendario:</label><input type= "text" name="nomeEv" id="nCalendario" placeholder=" 2018"/></p>
+					<p><label id="labelName">Título  do Calendario:</label><input type= "text" name="nomeEv" id="nCalendario" placeholder="Calendario Academico"/></p>
 					
 					<p>
 						<label id ="lAno">Ano </label>
-						<select id="s-dia" name="select-ano">
+						<select id="s-ano" name="select-ano">
 							<option value ="2017">2017</option>
 							<option value="2018">2018</option>
 							<option value="2019">2019</option>
 							<option value="2020">2020</option>
 							<option value="2021">2021</option>
-							
 						</select>
 					</p>
 					
@@ -122,16 +122,12 @@
 					<p>
 						<label id="label-tipo">Tipo</label>
 						<select id="s-tipo" name="select-tipo">
-							<option value="GRADUAÇÂO">GRADUAÇÂO</option>
-							<option value="PÓS GRADUAÇÂO">PÓS GRADUAÇÂO</option>
-							<option value="CTT">CTT</option>
-							<option value="EAD">EAD</option>
-							<option value="LEDOC">LEDOC</option>
-							<option value="PARFOR">PARFOR</option>
+							<% kinds.forEach(function(kind) { %>
+								<option value=<%= kind %>><%= kind %></option>
+							<% }); %>	
 						</select>
 					</p>
 				
-					
 					
 					<p>
 						<label id="label-campus">Campus</label>
@@ -143,7 +139,7 @@
 							<option value="PICOS">TERESINA</option>
 						</select>
 					</p>
-					
+<!-- 					
 					<fieldset>
 						<legend id ="leg-event">Eventos</legend>
 						<p>
@@ -162,15 +158,41 @@
 							<br>
 						</p>
 						
-					</fieldset>
+					</fieldset> -->
 				
 				</fieldset>
-			
-				<input type="submit" value="Cadastrar" id="button"/>
-				<input type="submit" value="Sair" id="button-sair"/>
+				<input value="Cadastrar" id="button"/>
 				<br>
 				<br>
-				
 			</form>
 		</body>
+		<script>
+			$(document).ready(function() {
+				var title, year, campi, kind;
+				$("#button").on('click',function() {
+					title = $("#nCalendario").val();
+					year = $("#s-ano").val();
+					campi = $("#s-campus").val();
+					kind = $("#s-tipo").val();
+
+					var calendar = {
+						title: title,
+						year: year,
+						campus: campi,
+						kind: kind
+					}
+
+					$.ajax({
+						method: "POST",
+						url: "http://localhost:8080/api/calendars",
+						data: calendar,
+						statusCode: {
+							200: function() { window.location.replace("http://localhost:8080/admin") },
+							401: function() { alert() },
+							500: function() { alert("500") }
+						}
+					})
+				})
+			})
+		</script>
 	</html>

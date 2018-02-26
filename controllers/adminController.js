@@ -1,4 +1,7 @@
 const passport = require('passport')
+const async = require('async')
+
+const Calendar = require('../models/calendar');
 
 const { body, validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
@@ -42,7 +45,7 @@ exports.auth = [
                     case "EVEN":
                         return res.render('evento');
                     default:
-                        return res.render('site-ufpi');
+                        return res.redirect('/admin');
                 }
             });
         })(req, res, next);
@@ -50,7 +53,10 @@ exports.auth = [
 ]
 
 exports.callendar_get = function(req, res, next) {
-    if (req.user.kind != 'CAL')
-        throw new Error('Server Error')
-    res.render('calendario')        
+    if (req.user.kind != 'CAL') { 
+        const error = new Error();
+        error.status = 403; 
+        throw error;
+    }
+    return res.render('calendario', { kinds: Calendar.schema.path("kind").enumValues })
 }   
