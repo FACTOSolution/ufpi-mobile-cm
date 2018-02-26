@@ -21,5 +21,7 @@ router.post('/',AdminController.auth);
 // GET Calendar Register Page
 router.get('/calendar',isLocalAuthenticated,AdminController.callendar_get);
 
+// GET Calendar Event Register Page
+router.get('/calendar/:id/event', isLocalAuthenticated,AdminController.callendar_event_get);
 
 module.exports = router;

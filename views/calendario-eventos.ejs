@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>Cadastro Eventos Do Caléndario</title>
+    <style>
+        body{
+            background-color:#11a6ad;}
+        form{
+        width:800px;
+        margin:auto;}
+        label{
+        display:inline-block;
+        font-size:0.9em;
+        font-weight:bold;
+        width:160px;}     
+        input,select{
+        display:inline-block;
+        width:300px;
+        background-color:#92b7;
+        height:26px;
+        margin: 14px auto 0px;
+        padding:3px;
+        border-radius:8px;
+        opacity:0.5;}
+        #nCalendario{
+            display:inline-block;
+            width:600px;
+            background-color:white; }
+        legend{
+            padding:15px;}  
+        #Calendario{
+            width:770px;}
+        #textIni{
+        text-align:center;
+        font:bold 20px sans-serif;}
+        #button{
+            float:right;
+            width:120px;
+            padding:5px 35px;
+            border-radius:20px;
+            font:bold 12px sans-serif;	
+            border:1px solid #9eb9c3;
+            color:"black";
+            box-shadow:0px 0px 10px;
+            background-color:gray; }  
+        #button-sair{
+            float:left;
+            width:100px;
+            border-radius:20px;
+            font:bold 12px sans-serif;	
+            border:1px solid #9eb9c3;
+            color:"black";
+            box-shadow:0px 0px 10px;
+            background-color:gray;
+            margin-bottom:20px; }
+        #button-sair:hover{
+            background-color:lightgreen;
+            cursor:pointer; }
+        #button:hover {
+            background-color:lightgreen;
+            cursor:pointer; }
+    </style>
+</head>
+
+<fieldset>
+    <legend id ="leg-event">Eventos</legend>
+    <p>
+        <label id="label-titulo">Título</label>
+        <input id=" e-titulo" name="tituloevento" type="text" placeholder="Calourada Unificada 2018"/>
+    </p>
+    
+    <p>
+        <label id="label-datain">Data de ínicio</label>
+        <input id="e-datain" name="datainicio" type="date" />
+    </p>
+    
+    <p>
+        <label id="label-datafim">Data de fim</label>
+        <input id="e-datafim" name="datafim" type="date" />
+        <br>
+    </p>
+    <input value="Cadastrar" id="button"/>
+    
+</fieldset>

@@ -60,3 +60,7 @@ exports.callendar_get = function(req, res, next) {
     }
     return res.render('calendario', { kinds: Calendar.schema.path("kind").enumValues })
 }   
+
+exports.callendar_event_get = function(req, res, next) {
+    return res.render('calendario-eventos');
+}
