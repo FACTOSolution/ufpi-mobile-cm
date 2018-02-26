@@ -91,6 +91,9 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+// Using express to serve static files
+app.use(express.static('static'))
+
 app.set('view engine', 'ejs')
 
 // Add Http Error Pages default
