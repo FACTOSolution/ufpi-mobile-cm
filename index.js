@@ -1,5 +1,6 @@
 const express = require('express')
 const session = require('express-session')
+const mongoStore = require('connect-mongo')(session)
 const { join } = require('path')
 const logger = require('morgan')
 const apiDocs = require('swagger-jsdoc')
@@ -84,6 +85,7 @@ passport.deserializeUser(function(_id, done) {
 
 app.use(session({ 
   secret: process.env.SECRET,
+  store: new mongoStore({ url: process.env.MONGODB_URI }),
   resave: false,
   saveUninitialized: false
 }))
