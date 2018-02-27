@@ -60,7 +60,7 @@
 </head>
 <body>
 	<p id="testIni">Cadastro de  eventos</p>
-	<form method = "post" action="">
+	<form method = "post" action="" id="eventForm">
 		<fieldset id= "evento">
 			<legend>Evento</legend>
 			<p><label id="labelName">Nome  do Evento:</label><input type= "text" name="nomeEv" id="nEvento" placeholder="Eripi 2018"/></p>
@@ -68,8 +68,10 @@
 			<p><label id="labelData">Data  do Evento:</label><input/type="date" name="dataEv" id="dEvento"></p>
 			<p><label id="labelHora">Hora  do Evento:</label><input type="time" name="horaEv" id="hEvento"/></p>
 		</fieldset>
-		<input type="submit" value="Cadastrar" id="button"/>
-		<input type="submit" value="Sair" id="button-sair"/>		
+		<input type="submit" value="Cadastrar" id="button"/>		
 	</form>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="../../js/events_main.js"></script>
 </body>
 </html>

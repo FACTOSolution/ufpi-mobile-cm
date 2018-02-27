@@ -43,7 +43,7 @@ exports.auth = [
                     case "RU":
                         return res.render('restaurante');
                     case "EVEN":
-                        return res.render('evento');
+                        return res.redirect('/admin/events')
                     default:
                         return res.redirect('/admin');
                 }
@@ -52,7 +52,7 @@ exports.auth = [
     }
 ]
 
-exports.callendar_get = function(req, res, next) {
+exports.callendar_register_get = function(req, res, next) {
     if (req.user.kind != 'CAL') { 
         const error = new Error();
         error.status = 403; 
@@ -61,6 +61,20 @@ exports.callendar_get = function(req, res, next) {
     return res.render('calendario', { kinds: Calendar.schema.path("kind").enumValues })
 }   
 
-exports.callendar_event_get = function(req, res, next) {
+exports.callendar_event_register_get = function(req, res, next) {
+    if(req.user.kind != 'CAL') {
+        const error = new Error();
+        error.status = 403;
+        throw error;
+    }
     return res.render('calendario-eventos', { calendarId: req.params.id });
+}
+
+exports.event_register_get = function(req, res, next) {
+    if(req.user.kind != 'EVEN') {
+        const error = new Error();
+        error.status = 403;
+        throw error;
+    }
+    return res.render('eventos');
 }
