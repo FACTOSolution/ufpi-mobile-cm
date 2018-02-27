@@ -19,6 +19,7 @@ function registerCalendar(e) {
         campus: campus
     })
     .then(function(response){
+        alert("Calendário Cadastrado")
         window.location.replace('http://localhost:8080/admin/calendars/' + response.data._id + "/events")
     })
     .catch(function(error){

@@ -38,7 +38,18 @@ function fetchPages(numberOfPages = 1, startPage = 0, done = (_) => void (0)) {
     })
   }])
     .paginate('.pagination-next a@href')
-    .limit(numberOfPages)(done)
+    .limit(numberOfPages)(replaceTags)(done)
+}
+
+function replaceTags(err, data) {
+  data.forEach(element => {
+    element.data.hrefs.forEach((href, linkIndex) => {
+      var line = element.data.text.filter(l => { return l.includes(href) });
+      var index = element.data.text.indexOf(line.pop());
+      element.data.text[index] = element.data.text[index]
+        .replace(href,"<a href=" + element.data.links[linkIndex] + ">" + href + "</a>");
+    })
+  });
 }
 
 exports.fetchPages = fetchPages

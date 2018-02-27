@@ -113,7 +113,7 @@ EventSchema.set('toJSON', { virtuals: true, getters: false, transform: deleteIdT
 const CalendarSchema = new mongoose.Schema({
   title: { type: String, required: true },
   year: { type: Number, default: () => (new Date(Date.now())).getFullYear() },
-  kind: { type: String, enum: ['ctt', 'grad', 'pos'], required: true },
+  kind: { type: String, enum: ['ctt', 'grad', 'pos', 'ead', 'ledoc', 'parfor'], required: true },
   campus: { type: String, required: true },
   events: [EventSchema],
   publisher: {
