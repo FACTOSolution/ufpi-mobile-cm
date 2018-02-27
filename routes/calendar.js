@@ -46,18 +46,36 @@ router.post('/calendars', passport.authenticate('basic', { session: false }), (r
     })
 })
 
+/**
+ * @swagger
+ * /calendars/_id/events:
+ *  post:
+ *    summary: 'Adiciona um novo evento ao calendário do usuário autenticado'
+ *    security:
+ *      - basicAuth: []
+ *    tags:
+ *      - 'calendários, eventos'
+ *    parameters:
+ *      -
+ *        name: 'evento'
+ *        in: body
+ *        description: 'O novo evento que será adicionado ao calendário'
+ *        required: true
+ *        schema:
+ *          $ref: '#/definitions/NewEvent'
+ *    responses:
+ *      200:
+ *        description: 'O evento foi adcionado ao calendário'
+ *        schema:
+ *          $ref: '#/definitions/Event'
+ */
 router.post('/calendars/:_id/events', passport.authenticate('basic', { session: false }), (req, res) => {
   const { title, startDate, endDate } = req.body
   // Creating an event
   const event = { "title": title, "startDate": startDate, "endDate": endDate }
 
-  // Calendar
-  //   .findById(_id, (err, calendar) => {
-  //     if (err) { return res.status(500).send(err.message); }
-  //     calendar
-  //   })
   Calendar
-    .findByIdAndUpdate(_id, { $push: { events: event } }, (err, calendar) => {
+    .findByIdAndUpdate(req.params._id, { $push: { events: event } }, { 'new': true }, (err, calendar) => {
       if (err) { return res.status(500).send(err.message) }
       return res.status(200).json(event)
     })

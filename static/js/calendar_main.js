@@ -1,5 +1,6 @@
-// Connect the submit event with the event handler method
+// Connecting the submit event with the event handlers
 document.getElementById('calendar-form').addEventListener('submit',registerCalendar);
+
 
 // Function that will call the API and register a calendar
 function registerCalendar(e) {
@@ -18,7 +19,7 @@ function registerCalendar(e) {
         campus: campus
     })
     .then(function(response){
-        window.location.replace('http://localhost:8080/admin/calendar/' + response.data._id + "/events")
+        window.location.replace('http://localhost:8080/admin/calendars/' + response.data._id + "/events")
     })
     .catch(function(error){
         console.log(error);

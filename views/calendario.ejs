@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Cadastro do calendário</title>
@@ -62,77 +62,48 @@
 			background-color:lightgreen;
 			cursor:pointer;}
 	</style>
-	</head>
-	<body>
-		<p id="textIni">Cadastro do  calendário</p>
-		<form id="calendar-form">
-			<fieldset id= "Calendario">
-				<legend id="leg-cal">Informações do Calendario</legend>
-				<p><label id="labelName">Título  do Calendario:</label><input type= "text" name="nomeEv" id="nCalendario" placeholder="Calendario Academico"/></p>
-				<p>
-					<label id ="lAno">Ano </label>
-					<select id="s-ano" name="select-ano">
-						<option value ="2017">2017</option>
-						<option value="2018">2018</option>
-						<option value="2019">2019</option>
-						<option value="2020">2020</option>
-						<option value="2021">2021</option>
-					</select>
-				</p>
-				<p>
-					<label id="label-tipo">Tipo</label>
-					<select id="s-tipo" name="select-tipo">
-						<% kinds.forEach(function(kind) { %>
-							<option value=<%= kind %>><%= kind %></option>
-						<% }); %>	
-					</select>
-				</p>
-				<p>
-					<label id="label-campus">Campus</label>
-					<select id="s-campus" name="select-campus">
-						<option value="BOM JESUS">BOM JESUS</option>
-						<option value="FLORIANO">FLORIANO</option>
-						<option value="PARNAIBA">PARNAIBA</option>
-						<option value="PICOS">PICOS</option>
-						<option value="PICOS">TERESINA</option>
-					</select>
-				</p>
-			</fieldset>
-			<input value="Cadastrar" id="button" type="submit"/>
-			<br>
-			<br>
-		</form>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-		<script src="../js/calendar_main.js"></script>
-	</body>
-		<!-- <script>
-			$(document).ready(function() {
-				var title, year, campi, kind;
-				$("#button").on('click',function() {
-					title = $("#nCalendario").val();
-					year = $("#s-ano").val();
-					campi = $("#s-campus").val();
-					kind = $("#s-tipo").val();
-
-					var calendar = {
-						title: title,
-						year: year,
-						campus: campi,
-						kind: kind
-					}
-
-					$.ajax({
-						method: "POST",
-						url: "http://localhost:8080/api/calendars",
-						data: calendar,
-						statusCode: {
-							200: function() { window.location.replace("http://localhost:8080/admin") },
-							401: function() { alert() },
-							500: function() { alert("500") }
-						}
-					})
-				})
-			})
-		</script> -->
-	</html>
+</head>
+<body>
+	<p id="textIni">Cadastro do  calendário</p>
+	<form id="calendar-form">
+		<fieldset id= "Calendario">
+			<legend id="leg-cal">Informações do Calendario</legend>
+			<p><label id="labelName">Título  do Calendario:</label><input type= "text" name="nomeEv" id="nCalendario" placeholder="Calendario Academico"/></p>
+			<p>
+				<label id ="lAno">Ano </label>
+				<select id="s-ano" name="select-ano">
+					<option value ="2017">2017</option>
+					<option value="2018">2018</option>
+					<option value="2019">2019</option>
+					<option value="2020">2020</option>
+					<option value="2021">2021</option>
+				</select>
+			</p>
+			<p>
+				<label id="label-tipo">Tipo</label>
+				<select id="s-tipo" name="select-tipo">
+					<% kinds.forEach(function(kind) { %>
+						<option value=<%= kind %>><%= kind %></option>
+					<% }); %>	
+				</select>
+			</p>
+			<p>
+				<label id="label-campus">Campus</label>
+				<select id="s-campus" name="select-campus">
+					<option value="BOM JESUS">BOM JESUS</option>
+					<option value="FLORIANO">FLORIANO</option>
+					<option value="PARNAIBA">PARNAIBA</option>
+					<option value="PICOS">PICOS</option>
+					<option value="PICOS">TERESINA</option>
+				</select>
+			</p>
+		</fieldset>
+		<input value="Cadastrar" id="button" type="submit"/>
+		<br>
+		<br>
+	</form>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="../js/calendar_main.js"></script>
+</body>
+</html>

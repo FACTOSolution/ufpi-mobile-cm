@@ -39,7 +39,7 @@ exports.auth = [
                 if (err) { return next(err); }
                 switch(user.kind){
                     case "CAL":
-                        return res.redirect('/admin/calendar');
+                        return res.redirect('/admin/calendars');
                     case "RU":
                         return res.render('restaurante');
                     case "EVEN":
@@ -62,5 +62,5 @@ exports.callendar_get = function(req, res, next) {
 }   
 
 exports.callendar_event_get = function(req, res, next) {
-    return res.render('calendario-eventos');
+    return res.render('calendario-eventos', { calendarId: req.params.id });
 }

@@ -19,9 +19,9 @@ router.get('/', AdminController.index);
 router.post('/',AdminController.auth);
 
 // GET Calendar Register Page
-router.get('/calendar',isLocalAuthenticated,AdminController.callendar_get);
+router.get('/calendars',isLocalAuthenticated,AdminController.callendar_get);
 
 // GET Calendar Event Register Page
-router.get('/calendar/:id/events', isLocalAuthenticated,AdminController.callendar_event_get);
+router.get('/calendars/:id/events', isLocalAuthenticated,AdminController.callendar_event_get);
 
 module.exports = router;

@@ -64,24 +64,29 @@
             cursor:pointer; }
     </style>
 </head>
-
-<fieldset>
-    <legend id ="leg-event">Eventos</legend>
-    <p>
-        <label id="label-titulo">Título</label>
-        <input id=" e-titulo" name="tituloevento" type="text" placeholder="Calourada Unificada 2018"/>
-    </p>
-    
-    <p>
-        <label id="label-datain">Data de ínicio</label>
-        <input id="e-datain" name="datainicio" type="date" />
-    </p>
-    
-    <p>
-        <label id="label-datafim">Data de fim</label>
-        <input id="e-datafim" name="datafim" type="date" />
-        <br>
-    </p>
-    <input value="Cadastrar" id="button"/>
-    
-</fieldset>
+<body>
+    <form id="calendarEventForm">
+        <fieldset>
+            <legend id ="leg-event">Eventos</legend>
+            <p>
+                <label id="label-titulo">Título</label>
+                <input id="e-titulo" name="tituloevento" type="text" placeholder="Calourada Unificada 2018"/>
+            </p>
+            <p>
+                <label id="label-datain">Data de ínicio</label>
+                <input id="e-datain" name="datainicio" type="date" />
+            </p>
+            <p>
+                <label id="label-datafim">Data de fim</label>
+                <input id="e-datafim" name="datafim" type="date" />
+                <br>
+            </p>
+            <input type="hidden" id="calendar_id" value=<%= calendarId %>>
+            <input value="Cadastrar" id="button" type="submit"/>
+        </fieldset>
+    </form>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="../../../js/calendar_event_main.js"></script>
+</body>
+</html>
