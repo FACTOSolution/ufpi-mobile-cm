@@ -46,6 +46,23 @@ router.post('/calendars', passport.authenticate('basic', { session: false }), (r
     })
 })
 
+router.post('/calendars/:_id/events', passport.authenticate('basic', { session: false }), (req, res) => {
+  const { title, startDate, endDate } = req.body
+  // Creating an event
+  const event = { "title": title, "startDate": startDate, "endDate": endDate }
+
+  // Calendar
+  //   .findById(_id, (err, calendar) => {
+  //     if (err) { return res.status(500).send(err.message); }
+  //     calendar
+  //   })
+  Calendar
+    .findByIdAndUpdate(_id, { $push: { events: event } }, (err, calendar) => {
+      if (err) { return res.status(500).send(err.message) }
+      return res.status(200).json(event)
+    })
+})
+
 /**
  * @swagger
  * /calendars/{id}:

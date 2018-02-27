@@ -18,7 +18,7 @@ function registerCalendar(e) {
         campus: campus
     })
     .then(function(response){
-        console.log(response);
+        window.location.replace('http://localhost:8080/admin/calendar/' + response.data._id + "/events")
     })
     .catch(function(error){
         console.log(error);

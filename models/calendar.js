@@ -123,7 +123,7 @@ const CalendarSchema = new mongoose.Schema({
   }
 }, { timestamps: true })
 
-CalendarSchema.set('toJSON', { virtuals: true, getters: false, transform: deleteIdTransform, versionKey: false })
+CalendarSchema.set('toJSON', { virtuals: true, getters: false, versionKey: false })
 
 const Calendar = mongoose.model('Calendar', CalendarSchema)
 
