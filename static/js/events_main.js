@@ -9,7 +9,9 @@ function eventRegister (e) {
     location = document.getElementById('lEvento').value;
     date = document.getElementById('dEvento').value;
     time = document.getElementById('hEvento').value;
-    dateTime = date + time
+    dateTime = date + ' ' + time
+
+    console.log(dateTime);
 
     axios.post('http://localhost:8080/api/notifications', {
         title: title,
