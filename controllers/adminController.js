@@ -41,9 +41,9 @@ exports.auth = [
                     case "CAL":
                         return res.redirect('/admin/calendars');
                     case "RU":
-                        return res.render('restaurante');
+                        return res.redirect('/admin/menus');
                     case "EVEN":
-                        return res.redirect('/admin/events')
+                        return res.redirect('/admin/events');
                     default:
                         return res.redirect('/admin');
                 }
@@ -77,4 +77,13 @@ exports.event_register_get = function(req, res, next) {
         throw error;
     }
     return res.render('eventos');
+}
+
+exports.menu_register_get = function(req, res, next) {
+    if(req.user.kind != 'RU') {
+        const error = new Error();
+        error.status = 403;
+        throw error;
+    }
+    return res.render('restaurante');
 }

@@ -27,4 +27,7 @@ router.get('/calendars/:id/events', isLocalAuthenticated,AdminController.callend
 // GET Event Register Page
 router.get('/events', isLocalAuthenticated, AdminController.event_register_get);
 
+// GET Menu Register Page
+router.get('/menus', isLocalAuthenticated, AdminController.menu_register_get);
+
 module.exports = router;

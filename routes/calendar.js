@@ -54,7 +54,7 @@ router.post('/calendars', passport.authenticate('basic', { session: false }), (r
  *    security:
  *      - basicAuth: []
  *    tags:
- *      - 'calendários, eventos'
+ *      - 'calendários'
  *    parameters:
  *      -
  *        name: 'evento'

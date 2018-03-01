@@ -1,92 +1,70 @@
-	<!DOCTYPE html>
-	<html>
-	<head>
-	  <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width">
-	  <title>Cadastro do restaurante</title>
-	  <style>
-	  
-	  body{
-		background-color:#11a6ad;
-	  }
-	  form{
-		width:800px;
-		margin:auto;
-	  }
-	  legend{
-	  	padding: 15px;
-	  }
-	  #textIni{
-		text-align:center;
-		font:bold 20px sans-serif;
-	  }
-	  #button-sair{
-		  width:100px;
-		  border-radius:20px;
-		  font:bold 12px sans-serif;	
-		  border:1px solid #9eb9c3;
-		  color:"black";
-		  box-shadow:0px 0px 10px;
-		  margin-left: 300px;
-		  margin-top:20px;
-		  padding: 2px;
-		  background-color:gray;
-				}
-						
-						
-	  #button{
-		  float: right;
-		  width:100px;
-		  border-radius:20px;
-		  font:bold 12px sans-serif;	
-		  border:1px solid #9eb9c3;
-		  color:"black";
-		  box-shadow:0px 0px 10px;
-		  margin-right: 300px;
-		  margin-top: 20px;
-		  padding: 2px;
-		  background-color:gray;
-				}
-
-	  label{
-				display:inline-block;
-				font-size:0.9em;
-				font-weight:bold;
-				width:160px;
-					}			
-
-	  #input-acomp, #input-salada,#input-guarnicao,#input-prprincipal,#input-sobremesa,#input-suco,#select-campus,#select-dia{
-			display:inline-block;
-			width:300px;
-			background-color:"white";
-			height:26px;
-			margin: 14px auto 0px;
-			padding:3px;
-			border-radius:8px;
-			opacity:0.5;
-			}
-
-
-	  #button-sair:hover{
-				  background-color:lightgreen;
-				  cursor:pointer;
-							 }
-	  #button:hover{
-				  background-color:lightgreen;
-				  cursor:pointer;
-							 }
-		
-	  </style>
-	</head>
-	<body>
-	
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Cadastro do restaurante</title>
+	<style>
+	body{
+	background-color:#11a6ad;}
+	form{
+	width:800px;
+	margin:auto;}
+	legend{
+	padding: 15px;}
+	#textIni{
+	text-align:center;
+	font:bold 20px sans-serif;}
+	#button-sair{
+	width:100px;
+	border-radius:20px;
+	font:bold 12px sans-serif;	
+	border:1px solid #9eb9c3;
+	color:"black";
+	box-shadow:0px 0px 10px;
+	margin-left: 300px;
+	margin-top:20px;
+	padding: 2px;
+	background-color:gray;}
+	#button{
+	float: right;
+	width:100px;
+	border-radius:20px;
+	font:bold 12px sans-serif;	
+	border:1px solid #9eb9c3;
+	color:"black";
+	box-shadow:0px 0px 10px;
+	margin-right: 300px;
+	margin-top: 20px;
+	padding: 2px;
+	background-color:gray;}
+	label{
+	display:inline-block;
+	font-size:0.9em;
+	font-weight:bold;
+	width:160px;}			
+	#input-acomp, #input-salada,#input-guarnicao,#input-prprincipal,#input-sobremesa,#input-suco,#select-campus,#select-dia{
+	display:inline-block;
+	width:300px;
+	background-color:"white";
+	height:26px;
+	margin: 14px auto 0px;
+	padding:3px;
+	border-radius:8px;
+	opacity:0.5;}
+	#button-sair:hover{
+	background-color:lightgreen;
+	cursor:pointer;}
+	#button:hover{
+	background-color:lightgreen;
+	cursor:pointer;}
+	</style>
+</head>
+<body>
 	<p id="textIni">Cadastro do  restaurante</p>
-	
 	<form id ="form" method = "post" action="">
 		<fieldset id="f-restaurante">
-			<legend id ="l-restaurante">Informações do restaurante</legend>
-	
-			
+			<legend id ="l-restaurante">Informações do restaurante</legend>		
 			<p>
 				<label id="lcampus" for="select-campus">RU</label>
 				<select id="select-campus" name ="sru">
@@ -94,8 +72,7 @@
 						<option value="BIBLIOTECA">RU 2 BIBLIOTECA</option>
 						<option value="CCA">RU 3 CCA</option>
 				</select>
-			</p>
-			
+			</p>			
 			<p>
 				<label id="ldia" for "select-dia">Dia</label>
 				<select id="select-dia" name ="sdia">
@@ -104,65 +81,45 @@
 					<option value="quarta">QUARTA-FEIRA</option>
 					<option value="quinta">QUINTA-FEIRA</option>
 					<option value="sexta">SEXTA-FEIRA</option>
-					<option value="sabado">SÁBADO</option>
-					
+					<option value="sabado">SÁBADO</option>	
 				</select>
-			</p>
-			
+			</p>			
 			<fieldset id="fieldset-refeicao">
-						<legend id="leg-campus">Refeição</legend>
-						<input type="radio" id="ralmoco" name="refeicao"/><label for ="ralmoco">ALMOÇO</label><br>
-						<input type="radio" id="rjanta" name="refeicao"/><label for ="rjanta">JANTA</label>
-					
+				<legend id="leg-campus">Refeição</legend>
+				<input type="radio" id="ralmoco" name="refeicao"/><label for ="ralmoco">ALMOÇO</label><br>
+				<input type="radio" id="rjanta" name="refeicao"/><label for ="rjanta">JANTA</label>	
 			</fieldset>
-			
-			
-			
 			<fieldset id="fieldset-tipo">
-						<legend id="leg-campus">Tipo</legend>
-						<input type="radio" id="rnormal" name="tipo-refeicao"/><label for ="rnormal">NORMAL</label><br>
-						<input type="radio" id="r-vegano" name="tipo-refeicao"/><label for ="r-vegano">VEGETARIANO</label>
-					
+				<legend id="leg-campus">Tipo</legend>
+				<input type="radio" id="rnormal" name="tipo-refeicao"/><label for ="rnormal">NORMAL</label><br>
+				<input type="radio" id="r-vegano" name="tipo-refeicao"/><label for ="r-vegano">VEGETARIANO</label>
 			</fieldset>
-			
-			
 			<p>
 				<label id="lsalada" for="input-salada">Salada </label>
 				<input id="input-salada" name= "salada" type="text" placeholder="Salada verde">
-			</p>
-			
+			</p>	
 			<p>
 				<label id="lpratoprinc" for ="input-prprincipal">Prato principal </label>
 				<input id="input-prprincipal" name= "prato-principal" type="text" placeholder="Lasanha">
 			</p>
-			
 			<p>
 				<label id="lguarnicao" for ="input-guarnicao">Guarnição </label>
 				<input id="input-guarnicao" name= "guarnicao" type="text" placeholder="Farofa">
 			</p>
-			
 			<p>
 				<label id="lacompanhamento" for="input-acomp">Acompanhamento </label>
 				<input id="input-acomp" name= "acompanhamento" type="text" placeholder="Arroz e feijão">
 			</p>
-			
 			<p>
 				<label id="lsobremesa" for ="input-sobremesa">Sobremesa </label>
 				<input id="input-sobremesa" name= "sobremesa" type="text" placeholder="Doce">
 			</p>
-			
 			<p>
 				<label id="lsobremesa" for ="input-suco">Suco </label>
 				<input id="input-suco" name= "suco" type="text" placeholder="Suco de laranja">
 			</p>
-			
-			
-	
 		</fieldset>
+		<input type="submit" value="Cadastrar" id="button"/>
 	</form>
-
-	<input type="submit" value="Cadastrar" id="button"/>
-	<input type="submit" value="Sair" id="button-sair"/>
-
-	</body>
-	</html>
+</body>
+</html>
