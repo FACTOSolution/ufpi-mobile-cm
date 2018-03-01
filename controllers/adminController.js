@@ -87,3 +87,12 @@ exports.menu_register_get = function(req, res, next) {
     }
     return res.render('restaurante');
 }
+
+exports.menu_choicer_get = function(req, res, next) {
+    if(req.user.kind != 'RU') {
+        const error = new Error();
+        error.status = 403;
+        throw error;
+    }
+    return res.render('restaurante');
+}
