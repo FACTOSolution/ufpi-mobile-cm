@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<style>
 		body{
 			background-color:#11a6ad;}
@@ -19,10 +20,15 @@
 			font-weight:bold;
 			color: #f5f5f5; 
 			width:130px;}
+		legend{
+			padding:15px;}
+		#textIni{
+        	text-align:center;
+        	font-weight:900;}	
 	</style>
 </head>
 <body>
-	<p id="testIni">Cadastro de  eventos</p>
+	<p id="testIni" class="center-align">Cadastro de  eventos</p>
 	<form method="post" action="">
 		<fieldset id= "evento">
 			<legend>Restaurante Universitário</legend>
@@ -53,8 +59,15 @@
 					<input class="file-path validate" type="text">
 				</div>
 			</div> 
+			<div class="row">
+				<div class="center-align">
+					<button class="btn waves-effect waves-light blue lighten-1" type="submit" name="enviar">
+						Enviar
+						<i class="material-icons right">send</i>
+					</button>
+				</div>
+			</div>
 		</fieldset>
-		<input type="submit" value="Cadastrar" id="button"/>		
 	</form>
 </body>
 </html>
