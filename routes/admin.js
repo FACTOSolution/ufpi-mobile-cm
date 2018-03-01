@@ -27,10 +27,11 @@ router.get('/calendars/:id/events', isLocalAuthenticated,AdminController.callend
 // GET Event Register Page
 router.get('/events', isLocalAuthenticated, AdminController.event_register_get);
 
-// GET Menu Choicer Page
+// GET Menu Image Page
 router.get('/menus', isLocalAuthenticated, AdminController.menu_choicer_get);
 
 // GET Menu Register Page
 router.get('/menus/:_id', isLocalAuthenticated, AdminController.menu_register_get);
 
+// POST Menu Image Register
 module.exports = router;

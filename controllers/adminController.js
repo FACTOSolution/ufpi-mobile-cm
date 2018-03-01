@@ -94,5 +94,5 @@ exports.menu_choicer_get = function(req, res, next) {
         error.status = 403;
         throw error;
     }
-    return res.render('restaurante');
+    return res.render('restaurante_arquivo');
 }
