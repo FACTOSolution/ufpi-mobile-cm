@@ -60,6 +60,8 @@ const apiSpec = apiDocs({
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+// Multer Configuration
+
 // Passport Configuration
 
 // Passport Basic Strategy for API Endpoints
@@ -95,6 +97,7 @@ app.use(passport.session())
 
 // Using express to serve static files
 app.use(express.static('static'))
+app.use(express.static('public'));
 
 app.set('view engine', 'ejs')
 

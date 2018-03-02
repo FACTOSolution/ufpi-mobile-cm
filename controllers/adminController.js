@@ -1,5 +1,7 @@
 const passport = require('passport')
 const async = require('async')
+const multer = require('multer');
+const upload = multer({ dest: './public/img' }).any()
 
 const Calendar = require('../models/calendar');
 
@@ -95,4 +97,24 @@ exports.menu_choicer_get = function(req, res, next) {
         throw error;
     }
     return res.render('restaurante_arquivo');
+}
+
+exports.menu_file_get = function(req, res, next) {
+    if(req.user.kind != 'RU') {
+        const error = new Error();
+        error.status = 403;
+        throw error;
+    }
+    return res.render('menu_arquivo');
+}
+
+exports.menu_file_post = function(req, res, next) {
+    if(req.user.kind != 'RU') {
+        const error = new Error();
+        error.status = 403;
+        throw error;
+    }
+    upload(req, res, function(err) {
+        if(err) { res.status(500).json(err.message)}
+    })
 }

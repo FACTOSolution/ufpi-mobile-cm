@@ -28,7 +28,10 @@ router.get('/calendars/:id/events', isLocalAuthenticated,AdminController.callend
 router.get('/events', isLocalAuthenticated, AdminController.event_register_get);
 
 // GET Menu Image Page
-router.get('/menus', isLocalAuthenticated, AdminController.menu_choicer_get);
+router.get('/menus', isLocalAuthenticated, AdminController.menu_file_get);
+
+// POST Router To Menu File Upload
+router.post('/menus',isLocalAuthenticated,AdminController.menu_file_post);
 
 // GET Menu Register Page
 router.get('/menus/:_id', isLocalAuthenticated, AdminController.menu_register_get);
