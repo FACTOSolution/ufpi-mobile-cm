@@ -1,7 +1,24 @@
 const passport = require('passport')
 const async = require('async')
 const multer = require('multer');
-const upload = multer({ dest: './public/img' }).any()
+const path = require('path')
+const upload = multer({
+     storage: multer.diskStorage({
+         destination: (req, file, callback) => {
+             callback(null, './public/img');
+         },
+         filename: (req, file, callback) => {
+             callback(null, file.fieldname + path.extname(file.originalname));
+         }
+     }),
+     fileFilter: (req, file, callback) => {
+         var ext = path.extname(file.originalname);
+         if (ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg'){
+             return callback(res.status(500).json({ message: 'Apenas imagems são permitidas' }), false);
+         }
+         callback(null, true);
+     }
+    }).any()
 
 const Calendar = require('../models/calendar');
 
@@ -115,6 +132,7 @@ exports.menu_file_post = function(req, res, next) {
         throw error;
     }
     upload(req, res, function(err) {
-        if(err) { res.status(500).json(err.message)}
+        if(err) { return res.status(500).json(err.message)}
+        return res.status(200).json({ message: "Upload Concluido" })
     })
 }
