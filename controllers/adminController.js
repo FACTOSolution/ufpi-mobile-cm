@@ -5,7 +5,7 @@ const path = require('path')
 const upload = multer({
      storage: multer.diskStorage({
          destination: (req, file, callback) => {
-             callback(null, './public/img');
+             callback(null, './public/pdfs');
          },
          filename: (req, file, callback) => {
              callback(null, file.fieldname + path.extname(file.originalname));
@@ -13,8 +13,8 @@ const upload = multer({
      }),
      fileFilter: (req, file, callback) => {
          var ext = path.extname(file.originalname);
-         if (ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg'){
-             return callback(res.status(500).json({ message: 'Apenas imagems são permitidas' }), false);
+         if (ext !== '.pdf'){
+             return callback(new Error('Apenas PDFs são permitidos'), false);
          }
          callback(null, true);
      }
