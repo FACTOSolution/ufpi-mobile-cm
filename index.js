@@ -10,6 +10,8 @@ const { BasicStrategy } = require('passport-http')
 const LocalStrategy = require('passport-local').Strategy
 const bodyParser = require('body-parser')
 const httpErrorPages = require('http-error-pages');
+const axios = require('axios');
+const Agenda = require('agenda')
 
 const init = require('./db')
 const User = require('./models/user')
@@ -133,6 +135,22 @@ app.use('/api', notifications)
 
 app.get('/api/login', passport.authenticate('basic', { session: false }), (req, res) => {
   res.status(200).render('login', { userId: req.user._id, userEmail: req.user.email })
+})
+
+// Defining a new Agenda
+const agenda = new Agenda({db: { address: process.env.MONGODB_URI }});
+
+agenda.define('update articles', function(job, done) {
+    axios.get(process.env.HOSTURL + '/api/articles/update')
+      .then(done)
+      .catch(function(error) {
+        console.log(error)
+      })
+});
+
+agenda.on('ready', function(){
+    agenda.every('1 hour', 'update articles');
+    agenda.start();
 })
 
 init.then(() => {
