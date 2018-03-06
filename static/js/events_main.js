@@ -13,7 +13,7 @@ function eventRegister (e) {
 
     console.log(dateTime);
 
-    axios.post('http://localhost:8080/api/notifications', {
+    axios.post('mobile.ufpi.br/api/notifications', {
         title: title,
         location: location,
         startDate: dateTime

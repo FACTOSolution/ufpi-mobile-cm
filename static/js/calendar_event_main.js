@@ -10,7 +10,7 @@ function registerCalendarEvent(e){
     endDate = document.getElementById('e-datafim').value;
     calendar_id = document.getElementById('calendar_id').value;
 
-    axios.post("http://localhost:8080/api/calendars/" + calendar_id + "/events", {
+    axios.post("mobile.ufpi.br/api/calendars/" + calendar_id + "/events", {
         title: title,
         startDate: startDate,
         endDate: endDate
