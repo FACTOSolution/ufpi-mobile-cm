@@ -13,7 +13,7 @@ function eventRegister (e) {
 
     console.log(dateTime);
 
-    axios.post('mobile.ufpi.br/api/notifications', {
+    axios.post('http://mobile.ufpi.br/api/notifications', {
         title: title,
         location: location,
         startDate: dateTime
@@ -22,6 +22,7 @@ function eventRegister (e) {
         alert("Evento Cadastrado")
     })
     .catch(function(err){   
+        alert("Falha no cadastro")
         console.log(err.message);
     })
 

@@ -12,7 +12,7 @@ function registerCalendar(e) {
     kind = document.getElementById('s-tipo').value;
     campus = document.getElementById('s-campus').value;
 
-    axios.post("mobile.ufpi.br/api/calendars", {
+    axios.post("http://mobile.ufpi.br/api/calendars", {
         title: title,
         year: year,
         kind: kind,
@@ -20,7 +20,7 @@ function registerCalendar(e) {
     })
     .then(function(response){
         alert("Calendário Cadastrado")
-        window.location.replace('mobile.ufpi.br/admin/calendars/' + response.data._id + "/events")
+        window.location.replace('http://mobile.ufpi.br/admin/calendars/' + response.data._id + "/events")
     })
     .catch(function(error){
         console.log(error);
