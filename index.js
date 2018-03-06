@@ -11,7 +11,7 @@ const LocalStrategy = require('passport-local').Strategy
 const bodyParser = require('body-parser')
 const httpErrorPages = require('http-error-pages');
 const axios = require('axios');
-const Agenda = require('agenda')
+const cronJob = require('cron').CronJob;
 
 const init = require('./db')
 const User = require('./models/user')
@@ -137,21 +137,18 @@ app.get('/api/login', passport.authenticate('basic', { session: false }), (req, 
   res.status(200).render('login', { userId: req.user._id, userEmail: req.user.email })
 })
 
-// Defining a new Agenda
-const agenda = new Agenda({db: { address: process.env.MONGODB_URI }});
-
-agenda.define('update articles', function(job, done) {
+var job = new cronJob({
+  cronTime: '0 */1 * * *',
+  onTick: function() {
     axios.get(process.env.HOSTURL + '/api/articles/update')
-      .then(done)
-      .catch(function(error) {
-        console.log(error)
-      })
+    .then(console.log('Articles Updated'))
+    .catch(function(error) {
+      console.debug(error);
+    })
+  },
+  start: true
 });
 
-agenda.on('ready', function(){
-    agenda.every('1 hour', 'update articles');
-    agenda.start();
-})
 
 init.then(() => {
   const server = app.listen(PORT, () => {
